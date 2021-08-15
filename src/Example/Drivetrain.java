@@ -1,4 +1,3 @@
-
 package Example;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -11,10 +10,7 @@ import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import java.lang.Math.*;
 
-/** *********************** HOW TO USE THIS FILE *************************
-**/
 
-// @TeleOp(name = "MASTER BASE CODE", group = "default")
 public class Drivetrain
 {
 	// Declare Drive Motors and Array
@@ -64,13 +60,3 @@ public class Drivetrain
    tankDrive(0d, 0d, 0d, 0d); 
   }
 }
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
