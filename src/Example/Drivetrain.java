@@ -57,6 +57,10 @@ public class Drivetrain
   /* Small utility function that clips a double between two values */
 	private double clipRange(double x, double min, double max) {
 		return (x < min ? min : x) > max ? max : x;
+		
+	/* Overload of previous for increased conveniance */
+	private double clipRange(double x) {
+		return clipRange(x, -1d, 1d);
 	
 	/* Slightly less small utility function to normalize a double array*/
 	protected void normalize(double[] wheelSpeeds, double magnitude) {
@@ -77,16 +81,16 @@ public class Drivetrain
 		
 	/* This program computes the neccessary movement vectors to move the robot in a field-centric manner
 	 *
-	 * @param strafeSpeed  the horizontal speed of the robot, derived from input
-	 * @param forwardSpeed the vertical speed of the robot, derived from input
+	 * @param x  the horizontal speed of the robot, derived from input
+	 * @param y the vertical speed of the robot, derived from input
 	 * @param turnSpeed    the turn speed of the robot, derived from input
 	 * @param gyroAngle    the heading of the robot, derived from the gyro 
 	 */	
   public void driveFieldCentric(double x, double y, double turnSpeed, double gyroAngle) {
 		// Ensure that x, y, and turnSpeed are between -1 and 1
-		x = clipRange(x, -1d, 1d);
-		y = clipRange(y, -1d, 1d);
-		turnSpeed = clipRange(turnSpeed, -1d, 1d);
+		x = clipRange(x);
+		y = clipRange(y);
+		turnSpeed = clipRange(turnSpeed);
 		
 		// Create a new local Vector2D and rotate it so that it is field-centric
 		Vector2d input = new Vector2d(x, y);
@@ -117,6 +121,34 @@ public class Drivetrain
 		// Apply Movement
 		tankDrive(wheelSpeeds);
   }
+		
+	/**
+	 * This program computes the neccessary movement vectors to move the robot in a field-centric manner
+	 *
+	 * @param xSpeed         the horizontal speed of the robot, derived from input
+	 * @param ySpeed         the vertical speed of the robot, derived from input
+	 * @param turnSpeed      the turn speed of the robot, derived from input
+	 * @param gyroAngle      the heading of the robot, derived from the gyro
+	 * @param squareInputs   Square the value of the input to allow for finer control
+	 */
+	public void driveFieldCentric(double xSpeed, double ySpeed, double turnSpeed, double gyroAngle, boolean squareInputs) {
+			xSpeed = squareInputs ? clipRange(squareInput(xSpeed)) : clipRange(xSpeed);
+			ySpeed = squareInputs ? clipRange(squareInput(ySpeed)) : clipRange(ySpeed);
+			turnSpeed = squareInputs ? clipRange(squareInput(turnSpeed)) : clipRange(turnSpeed);
+
+			driveFieldCentric(xSpeed, ySpeed, turnSpeed, gyroAngle);
+	}
+		
+	 /**
+     * Drives the robot from the perspective of the robot itself rather than that of the driver.
+     *
+     * @param x            the horizontal speed of the robot, derived from input
+     * @param y            the vertical speed of the robot, derived from input
+     * @param turnSpeed    the turn speed of the robot, derived from input
+     */
+    public void driveRobotCentric(double x, double y, double turnSpeed) {
+        driveFieldCentric(strafeSpeed, forwardSpeed, turnSpeed, 0.0);
+    }
 	
 	  
 }
