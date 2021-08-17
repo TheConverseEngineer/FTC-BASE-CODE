@@ -2,6 +2,7 @@ package src;
 
 import Example.Vector2D
 import com.qualcomm.robotcore.hardware.DcMotor;
+import java.lang.Math.*;
 
 // This code serves as a base class for a holonomic, mecanum-style drivetrain
 public class Drivetrain
@@ -9,12 +10,16 @@ public class Drivetrain
 	// Declare Drive Motors and Array
 	private DcMotor leftFrontDrive, rightRearDrive, rightFrontDrive, leftRearDrive;
 	private DcMotor[] drivers;
+	
+	// Store ticks-per-inch
+	int tpi;
   
   /* Constructor for the Drivetrain class.
    * @param hwMap       a hardware map 
 	 * @param inversion   array of 4 booleans
+	 * @param tpi         the number of motor ticks in one inch of travel
    * Motor order for the second parameter is LF, RF, LR, RR. TRUE = FORWARD and FALSE = REVERSE */
-  public Drivetrain(HardwareMap hwMap, bool[] inversion) {
+  public Drivetrain(HardwareMap hwMap, bool[] inversion, int _tpi) {
     
     // Initialize the motor hardware variables
 		leftFrontDrive  = hwMap.get(DcMotor.class, "leftFrontDrive");
@@ -22,6 +27,9 @@ public class Drivetrain
 		rightFrontDrive  = hwMap.get(DcMotor.class, "rightFrontDrive");
 		rightRearDrive  = hwMap.get(DcMotor.class, "rightRearDrive");
     
+		// Set the TPI
+		tpi = _tpi;
+		
     // Initialize the motor array
 		drivers = [leftFrontDrive, rightFrontDrive, leftRearDrive, rightRearDrive];
     
@@ -101,19 +109,19 @@ public class Drivetrain
 
 		// Calculate wheel speeds for lateral movement only (no rotation)
 		double[] wheelSpeeds = new double[4];
-		wheelSpeeds[MotorType.kFrontLeft.value] = Math.sin(theta + Math.PI / 4);
-		wheelSpeeds[MotorType.kFrontRight.value] = Math.sin(theta - Math.PI / 4);
-		wheelSpeeds[MotorType.kBackLeft.value] = Math.sin(theta - Math.PI / 4);
-		wheelSpeeds[MotorType.kBackRight.value] = Math.sin(theta + Math.PI / 4);
+		wheelSpeeds[0] = Math.sin(theta + Math.PI / 4);
+		wheelSpeeds[1] = Math.sin(theta - Math.PI / 4);
+		wheelSpeeds[2] = Math.sin(theta - Math.PI / 4);
+		wheelSpeeds[3] = Math.sin(theta + Math.PI / 4);
 
 		// Normalize data
 		normalize(wheelSpeeds, input.magnitude());
 
 		// Factor in turning
-		wheelSpeeds[MotorType.kFrontLeft.value] += turnSpeed;
-		wheelSpeeds[MotorType.kFrontRight.value] -= turnSpeed;
-		wheelSpeeds[MotorType.kBackLeft.value] += turnSpeed;
-		wheelSpeeds[MotorType.kBackRight.value] -= turnSpeed;
+		wheelSpeeds[0] += turnSpeed;
+		wheelSpeeds[1] -= turnSpeed;
+		wheelSpeeds[2] += turnSpeed;
+		wheelSpeeds[3] -= turnSpeed;
 
 		// Re-Normalize data
 		normalize(wheelSpeeds);
@@ -154,6 +162,37 @@ public class Drivetrain
     public void driveRobotCentric(double x, double y, double turnSpeed) {
       driveFieldCentric(strafeSpeed, forwardSpeed, turnSpeed, 0.0);
     }
+		
+		/* Determines the required encoder ticks to complete autonomous movement
+		 * @param rho      the distance in ticks
+		 * @param theta    the angle of travel (in radians) 
+		 */
+		private double[] getHeaderInfo(double rho, double theta) {	
+			double leftEncoderTicks = Math.sin(theta + Math.PI / 4) * rho;
+			double rightEncoderTicks = Math.sin(theta - Math.PI / 4) * rho;
+			return new double[]{leftEncoderTicks, rightEncoderTicks};
+		}
+		
+		private double[] getFieldCentricImperialHeaderInfo(double deltaX, double deltaY. double gyroAngle) {
+			// Convert distance to ticks
+			double x = deltaX * tpi;
+			double y = deltaY * tpi;
+			
+			// Create and rotate vector
+			Vector2D path = new Vector2D(x, y)
+			path = path.rotateBy(-gyroAngle);
+			
+			// Calculate and returnencoder tick values
+			return getHeaderInfo(path.magnitude, path.angle);
+		}
+		
+		private void driveAutonmousInEncoderTicks(double deltaX, double deltaY, double maxSpeed, double accelTime, double gyroAngle) {
+			// Calculate the required motor speeds
+			double[] tickList = getFieldCentricImperialHeaderInfo(deltaX, deltaY);
+			double leftTick = tickList[0];
+			double rightTick = tickList[1];
+			
+		}
 	
 	  
 }
