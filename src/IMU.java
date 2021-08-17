@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /* This code serves as a base class for interpreting the REV IMU
  * To minimize lag, this code does NOT reset the gyro and only fetches angle measures when called.
- * For maximum efficiency, call updateAngle at the start of every loop iteration
+ * For maximum efficiency, call updateHeading() at the start of every loop iteration
  */
 public class IMU
 {
@@ -41,24 +41,30 @@ public class IMU
     multiplier = 1;
   }
   
-  public void invertAngle() {
+  /* Flips the heading angle (changes multiplier times -1) */
+  public void invertHeading() {
     multiplier = -multiplier;
   }
   
-  public void updateAngle() {
+  /* Access the gyro and get the new heading. 
+   * RECOMMENDED: CALL THIS METHOD AT THE START OF EACH LOOP ITERATION */
+  public void updateHeading() {
     globalHeading =  imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle * multiplier; 
     localHeading = (globalHeading + offset) * multiplier;
   }
   
-  public double getAngle() {
+  /* Returns the heading */
+  public double getHeading() {
      return localHeading
   }
   
-  public double getGlobalAngle() {
+  /* Returns the heading, ignoring all resets */
+  public double getGlobalHeading() {
     return globalHeading * multiplier;
   }
   
-  public void resetAngle() {
+  /* Resets the heading */
+  public void resetHeading() {
     offset = -localHeading;
   }
 }
