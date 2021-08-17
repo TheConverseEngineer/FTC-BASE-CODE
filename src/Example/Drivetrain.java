@@ -59,4 +59,20 @@ public class Drivetrain
   public void stop () {
    tankDrive(0d, 0d, 0d, 0d); 
   }
+	
+  /* Computes Motor Power based of a vector with rotational axis
+	 * Motor order is LF, RF, LR, RR. 
+	 * Setting theta to 0 moves the robot forward */
+  private double[] formFromVector(double _theta, double rho, double rotation) {
+    double[] motorPowers = {0d, 0d, 0d, 0d};
+		double theta = _theta - (Math.PI / 4)
+		motorPowers[0] = r * Math.cos(theta) + rotation;
+		motorPowers[1] = r * Math.sin(theta) -  rotation;
+		motorPowers[2] = r * Math.sin(theta) +  rotation;
+		motorPowers[3] = r * Math.cos(theta) -  rotation;
+		
+		return motorPowers;
+  }
+	
+	  
 }
