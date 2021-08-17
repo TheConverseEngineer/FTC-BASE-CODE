@@ -122,6 +122,11 @@ public class Drivetrain
 		tankDrive(wheelSpeeds);
   }
 		
+	/* Square magnitude of number while keeping the sign. */
+	protected double squareInput(double input) {
+			return input * Math.abs(input);
+	}
+
 	/**
 	 * This program computes the neccessary movement vectors to move the robot in a field-centric manner
 	 *
