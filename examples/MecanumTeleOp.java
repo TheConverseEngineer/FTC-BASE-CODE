@@ -1,6 +1,7 @@
 package examples;
 
 import FTC-BASE-CODE.src.Drivetrain;
+import FTC-BASE-CODE.src.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -27,6 +28,7 @@ import com.qualcomm.robotcore.util.Range;
 public class MecanumTeleOp extends LinearOpMode {
   
   private Drivetrain drive;
+  private IMU imu;
   
   /*
    * Code to run ONCE when the driver hits INIT
@@ -38,6 +40,9 @@ public class MecanumTeleOp extends LinearOpMode {
     // Setup the Drivetrain
     drive = new Drivetrain(hardwareMap, new double[]{true, false, true, false});
     
+    // Setup the IMU
+    imu = new IMU(hardwareMap);
+    
     telemetry.addData("Status", "Initialized");
     
     /*
@@ -45,7 +50,14 @@ public class MecanumTeleOp extends LinearOpMode {
      */
     @Override
     public void loop() {
+      imu.updateHeading();
       
+      double xSpeed = gamepad1.left_stick_x;
+      double ySpeed = gamepad1.left_stick_y;
+      double turnSpeed = gamepad1.right_stick_x;
+      double gyroAngle = imu.getHeading();
+      
+      driveFieldCentric(xSpeed, ySpeed, turnSpeed, gyroAngle, true);
     }
 
   }
