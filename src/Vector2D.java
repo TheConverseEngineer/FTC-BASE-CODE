@@ -1,4 +1,4 @@
-package Example;
+package src;
 
 /**
  * Think of a vector as a ray with a starting point at the origin.
