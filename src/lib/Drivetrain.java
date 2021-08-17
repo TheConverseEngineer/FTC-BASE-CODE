@@ -1,4 +1,4 @@
-package src;
+package lib;
 
 import Example.Vector2D
 import com.qualcomm.robotcore.hardware.DcMotor;
