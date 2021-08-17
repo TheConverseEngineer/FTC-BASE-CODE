@@ -2,7 +2,6 @@ package Example;
 
 import Example.Vector2D
 
-
 public class Drivetrain
 {
 	// Declare Drive Motors and Array
@@ -52,19 +51,43 @@ public class Drivetrain
    tankDrive(0d, 0d, 0d, 0d); 
   }
 	
-  /* Computes Motor Power based of a vector with rotational axis
-	 * Motor order is LF, RF, LR, RR. 
-	 * Setting theta to 0 moves the robot forward */
-  private double[] formFromVector(double _theta, double rho, double rotation) {
-    double[] motorPowers = {0d, 0d, 0d, 0d};
-		double theta = _theta - (Math.PI / 4)
-		motorPowers[0] = r * Math.cos(theta) + rotation;
-		motorPowers[1] = r * Math.sin(theta) -  rotation;
-		motorPowers[2] = r * Math.sin(theta) +  rotation;
-		motorPowers[3] = r * Math.cos(theta) -  rotation;
-		
-		return motorPowers;
-  }
+	/* Small utility function that clips a double between two values */
+	
+	
+  public void driveFieldCentric(double x, double y, double turnSpeed, double gyroAngle) {
+        strafeSpeed = clipRange(strafeSpeed);
+        forwardSpeed = clipRange(forwardSpeed);
+        turnSpeed = clipRange(turnSpeed);
+
+        Vector2d input = new Vector2d(strafeSpeed, forwardSpeed);
+        input = input.rotateBy(-gyroAngle);
+
+        double theta = input.angle();
+
+        double[] wheelSpeeds = new double[4];
+        wheelSpeeds[MotorType.kFrontLeft.value] = Math.sin(theta + Math.PI / 4);
+        wheelSpeeds[MotorType.kFrontRight.value] = Math.sin(theta - Math.PI / 4);
+        wheelSpeeds[MotorType.kBackLeft.value] = Math.sin(theta - Math.PI / 4);
+        wheelSpeeds[MotorType.kBackRight.value] = Math.sin(theta + Math.PI / 4);
+
+        normalize(wheelSpeeds, input.magnitude());
+
+        wheelSpeeds[MotorType.kFrontLeft.value] += turnSpeed;
+        wheelSpeeds[MotorType.kFrontRight.value] -= turnSpeed;
+        wheelSpeeds[MotorType.kBackLeft.value] += turnSpeed;
+        wheelSpeeds[MotorType.kBackRight.value] -= turnSpeed;
+
+        normalize(wheelSpeeds);
+
+        motors[MotorType.kFrontLeft.value]
+                .set(wheelSpeeds[MotorType.kFrontLeft.value] * maxOutput);
+        motors[MotorType.kFrontRight.value]
+                .set(wheelSpeeds[MotorType.kFrontRight.value] * rightSideMultiplier * maxOutput);
+        motors[MotorType.kBackLeft.value]
+                .set(wheelSpeeds[MotorType.kBackLeft.value] * maxOutput);
+        motors[MotorType.kBackRight.value]
+                .set(wheelSpeeds[MotorType.kBackRight.value] * rightSideMultiplier * maxOutput);
+    }
 	
 	  
 }
