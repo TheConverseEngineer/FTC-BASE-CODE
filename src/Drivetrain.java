@@ -186,8 +186,15 @@ public class Drivetrain
 			return getHeaderInfo(path.magnitude, path.angle);
 		}
 		
-		
-		private void driveAutonmousInEncoderTicks(double deltaX, double deltaY, double maxSpeed, double accelTime, double gyroAngle) {
+		/* Function to move the robot autonomously (field centric) whilst accelerating and de-accelerating to maintain accuracy
+		 * @param deltaX          distance in inches to move the robot left and right (field centric)
+		 * @param deltaY          distance in inches to move the robot up and down (field centric)
+		 * @param maxSpeed        maximum speed that the robot can travel at (may not be reached)
+		 * @param _accelTime      inches required for the robot to accelerate to full speed
+		 * @param gyroAngle       current heading of the robot
+     *   Formula for acceleration: y = (a/b)*x^2, such that a is max acceleration and b is acceleration time 
+		 */	
+		public void AutoDrive(double deltaX, double deltaY, double maxSpeed, double _accelTime, double gyroAngle) {
 			// Calculate the required motor distances
 			double[] tickList = getFieldCentricImperialHeaderInfo(deltaX, deltaY);
 			double leftTick = tickList[0];
@@ -198,17 +205,66 @@ public class Drivetrain
 			double normLeft = leftTick / reductionScalar;
 			double normRight = rightTick / reductionScalar;
 			
+			// Calculate scalar for the acceleration and de-acceleration curve
+			double accelScalar = (accelTime == 0) ? 1 : maxSpeed / accelTime;
+			
+			// Calculate Period (accel, steady, de-accel) times in relation to total drive distance
+			double accelTime = _accelTime * tpi;
+			double driveDist = Math.hypot(leftTick, rightTick);
+			double varSpeedTime = (2 * accelTime) < driveDist ? accelTime : (driveDist / 2);
+			
 			// Calculate encoder ticks
 			int leftFinal = (int) Math.round(leftTick);
 			int rightFinal = (int) Math.round(rightTick);
 			leftFinal = leftFinal + leftFrontDrive.getCurrentPosition();
 			rightFinal = rightFinal + rightFrontDrive.getCurrentPosition();
 			
-			// Activate Drivetrain
-			tankDrive(normLeft, normRight, normRight, normLeft);
+			// Activate drivetrain, and wait for completion
+			double currentSpeed = 0;
+			double distLeft = 0;
+			double distTraveled = 0;
+			while ( (leftFrontDrive.getCurrentPosition() > leftFinal && leftTick > 0 || leftFrontDrive.getCurrentPosition() < leftFinal && leftTick < 0) && (rightFrontDrive.getCurrentPosition() > rightFinal && rightTick > 0 || rightFrontDrive.getCurrentPosition() < rightFinal && rightTick < 0)) {
+				// Calculate distance traveled
+				distLeft = abs(Math.hypot(leftFinal - leftFrontDrive.getCurrentPosition(), rightFinal - rightFrontDrive.getCurrentPosition()));
+				distTraveled = driveDist - distLeft;
+							
+				if (distTraveled < varSpeedTime) {                                // Speed up time
+					// Calculate current speed
+					currentSpeed = accelScalar + (distTraveled ** 2);
+				} else if (distTraveled < (driveDist - varSpeedTime)) {           // Slow down time
+					// Calculate current speed
+					currentSpeed = accelScalar + (distLeft ** 2);
+				} else {                                                          // Steady Speed time
+					// Calculate current speed
+					currentSpeed = maxSpeed;
+				}
+				
+				// Apply movement
+				tankDrive(normLeft * currentSpeed, normRight * currentSpeed, normRight * currentSpeed, normLeft * currentSpeed);	
+			}		
 			
-			
+			// Stop motors
+			stop();
+		}	  
+		
+		
+		/* Overload of previous function to move the robot autonomously (robot centric) whilst accelerating and de-accelerating to maintain accuracy
+		 * @param deltaX          distance in inches to move the robot left and right (field centric)
+		 * @param deltaY          distance in inches to move the robot up and down (field centric)
+		 * @param maxSpeed        maximum speed that the robot can travel at (may not be reached)
+		 * @param _accelTime      inches required for the robot to accelerate to full speed
+		 */	
+		public void AutoDrive(double deltaX, double deltaY, double maxSpeed, double _accelTime) {
+			AutoDrive(deltaX, deltaY, maxSpeed, _accelTime, 0d);
 		}
-	
-	  
+		
+		/* Version (not overload) of previous function to move the robot autonomously (field centric) without accelerating or de-accelerating
+		 * @param deltaX          distance in inches to move the robot left and right (field centric)
+		 * @param deltaY          distance in inches to move the robot up and down (field centric)
+		 * @param maxSpeed        robot speed
+		 * @param gyroAngle       current heading of the robot
+		 */	
+		public void flatAutoDrive(double deltaX, double deltaY, double maxSpeed, double gyroAngle) {
+			AutoDrive(deltaX, deltaY, maxSpeed, 0d, gyroAngle);
+		}
 }
