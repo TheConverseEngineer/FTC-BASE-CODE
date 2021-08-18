@@ -182,15 +182,31 @@ public class Drivetrain
 			Vector2D path = new Vector2D(x, y)
 			path = path.rotateBy(-gyroAngle);
 			
-			// Calculate and returnencoder tick values
+			// Calculate and return encoder tick values
 			return getHeaderInfo(path.magnitude, path.angle);
 		}
 		
+		
 		private void driveAutonmousInEncoderTicks(double deltaX, double deltaY, double maxSpeed, double accelTime, double gyroAngle) {
-			// Calculate the required motor speeds
+			// Calculate the required motor distances
 			double[] tickList = getFieldCentricImperialHeaderInfo(deltaX, deltaY);
 			double leftTick = tickList[0];
 			double rightTick = tickList[1];
+			
+			// Psuedo-reduction normalization for drive control
+			double reductionScalar = leftTick > rightTick ? leftTick : rightTick;
+			double normLeft = leftTick / reductionScalar;
+			double normRight = rightTick / reductionScalar;
+			
+			// Calculate encoder ticks
+			int leftFinal = (int) Math.round(leftTick);
+			int rightFinal = (int) Math.round(rightTick);
+			leftFinal = leftFinal + leftFrontDrive.getCurrentPosition();
+			rightFinal = rightFinal + rightFrontDrive.getCurrentPosition();
+			
+			// Activate Drivetrain
+			tankDrive(normLeft, normRight, normRight, normLeft);
+			
 			
 		}
 	
