@@ -38,28 +38,36 @@ public class MecanumTeleOp extends LinearOpMode {
     telemetry.addData("Status", "Initializing");
     
     // Setup the Drivetrain
-    drive = new Drivetrain(hardwareMap, new double[]{true, false, true, false});
+    // TODO: MAKE SURE TO SET THE LAST PARAMETER TO THE ACTUAL TICKS-PER-INCH OF YOUR DRIVETRAIN
+    drive = new Drivetrain(hardwareMap, new double[]{true, false, true, false}, 1000d);
     
     // Setup the IMU
     imu = new IMU(hardwareMap);
     
     telemetry.addData("Status", "Initialized");
-    
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
-     */
-    @Override
-    public void loop() {
-      imu.updateHeading();
-      
-      double xSpeed = gamepad1.left_stick_x;
-      double ySpeed = gamepad1.left_stick_y;
-      double turnSpeed = gamepad1.right_stick_x;
-      double gyroAngle = imu.getHeading();
-      
-      driveFieldCentric(xSpeed, ySpeed, turnSpeed, gyroAngle, true);
-    }
+  }
+  /*
+   * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
+   */
+  @Override
+  public void loop() {
+    imu.updateHeading();
 
+    double xSpeed = gamepad1.left_stick_x;
+    double ySpeed = gamepad1.left_stick_y;
+    double turnSpeed = gamepad1.right_stick_x;
+    double gyroAngle = imu.getHeading();
+
+    drive.driveFieldCentric(xSpeed, ySpeed, turnSpeed, gyroAngle, true);
+  }
+  
+  /*
+   * Code to run ONCE after the driver hits PLAY but before they hit STOP
+   */
+  @Override
+  public void start() {
+    imu.updateHeading();
+    drive.autoDrive(10, 10, 20, 3, imu.getHeading());
   }
   
   
