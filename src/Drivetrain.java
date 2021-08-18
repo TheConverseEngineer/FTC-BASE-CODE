@@ -194,7 +194,7 @@ public class Drivetrain
 		 * @param gyroAngle       current heading of the robot
      *   Formula for acceleration: y = (a/b)*x^2, such that a is max acceleration and b is acceleration time 
 		 */	
-		public void AutoDrive(double deltaX, double deltaY, double maxSpeed, double _accelTime, double gyroAngle) {
+		public void autoDrive(double deltaX, double deltaY, double maxSpeed, double _accelTime, double gyroAngle) {
 			// Calculate the required motor distances
 			double[] tickList = getFieldCentricImperialHeaderInfo(deltaX, deltaY);
 			double leftTick = tickList[0];
@@ -254,7 +254,7 @@ public class Drivetrain
 		 * @param maxSpeed        maximum speed that the robot can travel at (may not be reached)
 		 * @param _accelTime      inches required for the robot to accelerate to full speed
 		 */	
-		public void AutoDrive(double deltaX, double deltaY, double maxSpeed, double _accelTime) {
+		public void autoDrive(double deltaX, double deltaY, double maxSpeed, double _accelTime) {
 			AutoDrive(deltaX, deltaY, maxSpeed, _accelTime, 0d);
 		}
 		
