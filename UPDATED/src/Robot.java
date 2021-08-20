@@ -5,7 +5,7 @@ import java.lang.Math.*;
 import UPDATED.src.ROBOT_DATA.*;
 
 // This code serves as a base class for a 4 motor drivetrain
-public class robot
+public class Robot
 {
   
   // Declare Drive Motors and Array
