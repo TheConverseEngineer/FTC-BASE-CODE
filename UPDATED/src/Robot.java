@@ -66,8 +66,14 @@ public class Robot
   /* Square magnitude of number while keeping the sign. 
 	 * @param input      the number to square
 	 * @return           the number squared*/
-	protected double squareInput(double input) {
+	public double squareInput(double input) {
 			return input * Math.abs(input);
+	}
+		
+	public double reduceRotation() {
+		while (m_THETA >= Math.PI * 2 || m_THETA < 0) {
+			m_THETA = m_THETA - Math.PI * (m_THETA > 0 ? -2 : 2);
+		}
 	}
 	
     
