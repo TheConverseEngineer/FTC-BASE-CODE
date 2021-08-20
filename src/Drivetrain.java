@@ -1,6 +1,6 @@
 package src;
 
-import src.Vector2D
+import src.Vector2D;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import java.lang.Math.*;
 
