@@ -64,6 +64,7 @@ public class MecanumRobot extends Robot
    */
   public void driveWithHeading(double theta, double speed, double turnSpeed) {
 		turnSpeed = clipRange(turnSpeed);
+		speed = clipRange(speed);
     
 		// Calculate wheel speeds for lateral movement only (no rotation)
 		double[] wheelSpeeds = new double[4];
@@ -103,13 +104,45 @@ public class MecanumRobot extends Robot
     double heading = fieldCentric ? Math.atan2(squareX, squareY) - m_THETA : Math.atan2(squareX, squareY);
     double speed = Math.hypot(squareX, squareY);
     driveWithHeading(heading, speed, squareRotX);
+	}
+
+
+	/* Drives the robot towards a specified point on the field
+	 * @param x       the x value of the point
+	 * @param y       the y value of the point
+	 * @param fRom    the rotation that the robot should end up at
+	 * @param speed   the speed at which the robot should move
+	 */
+	public void driveTowardsPoint(double x, double y, double fRot, double speed) {
+		double deltaX = x - m_X;
+		double deltaY = y - mY;
+		double deltaRot = fRot - m_THETA;
+
+		if (Math.abs(deltaRot) > Math.PI) {
+			deltaRot = 2*Math.PI - abs(deltaRot) * -(deltaRot / abs(deltaRot));
+		}
+
+		double turnSpeed = deltaRot / Math.PI * DRIVE_TO_POINT_TURN_TUNE;
+		double heading = Math.atan2(deltaX, deltaY);
+		driveWithHeading(heading, speed, turnSpeed);
+	}
+	
+
+	/* Overload of previous to drives the robot towards a specified point on the field and specify turn speed
+	 * @param x       the x value of the point
+	 * @param y       the y value of the point
+	 * @param fRom    the rotation that the robot should end up at
+	 * @param speed   the speed at which the robot should move
+	 */
+	public void driveTowardsPoint(double x, double y, double fRot, double speed, double turnSpeed) {
+		double deltaX = x - m_X;
+		double deltaY = y - mY;
+		double deltaRot = fRot - m_THETA;
+		double heading = Math.atan2(deltaX, deltaY);
+		driveWithHeading(heading, speed, turnSpeed);
+	}
+	
 }
 
-public void driveTowardsPoint(double x, double y, double fRot, double speed);
-  double deltaX = x - m_X;
-  double deltaY = y - mY;
-  double deltaRot = fRot - m_THETA;
-  
-  double equivalentAngle = fRot * Math.PI * (fRot <= Math.PI ? 2 : -2);
  
   
