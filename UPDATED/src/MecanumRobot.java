@@ -52,6 +52,64 @@ public class MecanumRobot extends Robot
     m_X = m_X + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.cos(m_THETA + dTheta/2) + dB * Math.cos(m_Theta - Math.PI/2 + dTheta/2);
     m_Y = m_Y + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.sin(m_THETA + dTheta/2) + dB * Math.sin(m_Theta - Math.PI/2 + dTheta/2);
     m_THETA = m_THETA + dTheta;
+    
+    reduceRotation();
   }
   
+  
+  /* Drives the robot in a specified direction
+   * @param theta       the direction the robot should travel
+   * @param speed       the speed at which the robot should travel
+   * @param turnSpeed   the speed at which the robot should turn whilst moving
+   */
+  public void driveWithHeading(double theta, double speed, double turnSpeed) {
+		turnSpeed = clipRange(turnSpeed);
+    
+		// Calculate wheel speeds for lateral movement only (no rotation)
+		double[] wheelSpeeds = new double[4];
+		wheelSpeeds[0] = Math.sin(theta + Math.PI / 4);
+		wheelSpeeds[1] = Math.sin(theta - Math.PI / 4);
+		wheelSpeeds[2] = Math.sin(theta - Math.PI / 4);
+		wheelSpeeds[3] = Math.sin(theta + Math.PI / 4);
+
+		// Normalize data
+		normalize(wheelSpeeds, magnitude);
+
+		// Factor in turning
+		wheelSpeeds[0] += turnSpeed;
+		wheelSpeeds[1] -= turnSpeed;
+		wheelSpeeds[2] += turnSpeed;
+		wheelSpeeds[3] -= turnSpeed;
+
+		// Re-Normalize data
+		normalize(wheelSpeeds);
+	  
+		// Apply Movement
+		tankDrive(wheelSpeeds);
+  }
+  
+  
+  /* Drives the robot using parameters that can be inputed from a controller
+   * @param x                  the x value of the drive joystick
+   * @param y                  the y value of the drive joystick
+   * @param rotX               the x value of the turn joystick
+   * @param fieldCentric       setting this to true will drive the robot relative to the field (reccomended)
+   */
+  public void driveWithController(double x, double y, double rotX, bool fieldCentric);
+    double squareX = clipRange(squareInput(x));
+    double squareY = clipRange(squareInput(y));
+    double sqaureRotX = clipRange(squareInput(rotX));
+    
+    double heading = fieldCentric ? Math.atan2(squareX, squareY) - m_THETA : Math.atan2(squareX, squareY);
+    double speed = Math.hypot(squareX, squareY);
+    driveWithHeading(heading, speed, squareRotX);
 }
+
+public void driveTowardsPoint(double x, double y, double fRot, double speed);
+  double deltaX = x - m_X;
+  double deltaY = y - mY;
+  double deltaRot = fRot - m_THETA;
+  
+  double equivalentAngle = fRot * Math.PI * (fRot <= Math.PI ? 2 : -2);
+ 
+  
