@@ -63,6 +63,13 @@ public class Robot
 	public double clipRange(double x) {
 		return clipRange(x, -1d, 1d);
 	
+  /* Square magnitude of number while keeping the sign. 
+	 * @param input      the number to square
+	 * @return           the number squared*/
+	protected double squareInput(double input) {
+			return input * Math.abs(input);
+	}
+	
     
 	/* Slightly less small utility function to normalize a double array
    * This function takes an array and scales it down until the largest value is equal to the magnitude
