@@ -48,4 +48,8 @@ public class Point
     return new Point(newX, newY);    
   }
   
+  public Point multiplyScalar(double a) {
+   return new Point(x * a, y * a);
+  }
+  
   
