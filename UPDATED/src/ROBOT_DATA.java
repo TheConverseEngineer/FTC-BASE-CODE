@@ -22,10 +22,13 @@ public static class ROBOT_DATA
   static const double TRACK_WIDTH = COUNTS_PER_INCH * TRACK_WIDTH_INCHES;                          // DO NOT EDIT
   
   
-  // Drive to point tuning values
+  // Drive to point ad trajectory tuning values
   static const double DRIVE_TO_POINT_TURN_TUNE = 1d;
   static const double DEFAULT_LINE_FOLLOW_RANGE_INCHES = 5d;
-  static const double DEFAULT_LINE_FOLLOW_RANGE = DEFAULT_LINE_FOLLOW_RANGE_INCHES * COUNTS_PER_INCH;  // DO NOT EDIT
+  static const double ABSOLUTE_TRAJECTORY_REACH_RANGE_INCHES = 0.5d;
+  static const double DEFAULT_LINE_FOLLOW_RANGE = DEFAULT_LINE_FOLLOW_RANGE_INCHES * COUNTS_PER_INCH;               // DO NOT EDIT
+  static const double ABSOLUTE_TRAJECTORY_REACH_RANGE = ABSOLUTE_TRAJECTORY_REACH_RANGE_INCHES * COUNTS_PER_INCH;   // DO NOT EDIT
+  
   
   
   /****************************** STATES - DO NOT EDIT ******************************/
