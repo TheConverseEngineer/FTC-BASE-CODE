@@ -6,6 +6,7 @@ public class Point
   public double x;
   public double y;
   
+  
   /* Constructor for the point class
    * @param x    the x value of the point
    * @param y    the y value of the point
@@ -48,8 +49,26 @@ public class Point
     return new Point(newX, newY);    
   }
   
+  
+  /* Multiplies a point by a double 
+   * @param a    the scalar that the point should be multiplied by
+   * @return     the product
+   */ 
   public Point multiplyScalar(double a) {
    return new Point(x * a, y * a);
   }
+  
+  
+  /* Finds the distance between two points 
+   * @param p   any other point
+   * @return    the distance between this point and point P
+   */
+  public double distToPoint(Point p) {
+    double deltaX =  Math.pow(p.x - x, 2);
+    double deltaY =  Math.pow(p.y - y, 2);
+    return Math.sqrt(deltaX + deltaY); 
+  }
+  
+}
   
   
