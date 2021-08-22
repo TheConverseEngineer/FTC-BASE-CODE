@@ -31,7 +31,7 @@ public class DriveToPointTest extends OpMode
   public FTCBot bot;
   
   @Override
-  public void inti() {
+  public void init() {
     bot = new FTCBot(hardwareMap);
   }
   
