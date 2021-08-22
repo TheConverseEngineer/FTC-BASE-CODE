@@ -16,7 +16,7 @@ public class Waypoint
    * Will allow the robot to interpolate and form a spline to maximize smoothness
    */
   public Waypoint(double x, double y) {
-    point = new Point(x, y);    
+    point = new Point(x * COUNTS_PER_INCH, y * COUNTS_PER_INCH);    
     absolute = false;
     range = DEFAULT_LINE_FOLLOW_RANGE;
   }
@@ -28,7 +28,7 @@ public class Waypoint
    * @param abs  Setting this to false will force the robot to follow this line exactly
    */
   public Waypoint(double x, double y, bool _abs) {
-    point = new Point(x, y);   
+    point = new Point(x * COUNTS_PER_INCH, y * COUNTS_PER_INCH);   
     absolute = _abs;
     range = DEFAULT_LINE_FOLLOW_RANGE;
   }
@@ -41,7 +41,7 @@ public class Waypoint
    * @param accuracy    How closely the robot should follow the line (higher values mean more smoothing)
    */
   public Waypoint(double x, double y, bool _abs, double accuracy) {
-    point = new Point(x, y);   
+    point = new Point(x * COUNTS_PER_INCH, y * COUNTS_PER_INCH);   
     absolute = _abs;
     range = accuracy;
   }
