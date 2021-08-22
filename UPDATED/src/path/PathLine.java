@@ -31,6 +31,9 @@ public class PathLine
    * @return         the point closest to the end
    */
   public Point getFurthestPoint(Point[] points) {
+    if (points.length == 1) {
+      return points[0];
+    }
     firstDist = B.distToPoint(points[0]);
     secondDist = B.distToPoint(points[1]);
     return points[firstDist > secondDist ? 1 : 0]; 
