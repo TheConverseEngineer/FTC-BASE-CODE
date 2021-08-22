@@ -146,12 +146,19 @@ public class MecanumRobot extends Robot
 		m_LEFT_ENCODER_OFFSET = m_LEFT_ENCODER_OFFSET - getLEncoder() + nL;
 		m_RIGHT_ENCODER_OFFSET = m_RIGHT_ENCODER_OFFSET - getREncoder() + nR;
 		m_BACK_ENCODER_OFFSET = m_BACK_ENCODER_OFFSET - getBEncoder() + nB;
+		resetLastEncoders(nL, nR, nB);
+	  
 	}
 
-public void resetEncodersImperial(double nL, double nR, double nB) {
+	public void resetEncodersImperial(double nL, double nR, double nB) {
 		m_LEFT_ENCODER_OFFSET = m_LEFT_ENCODER_OFFSET - getLEncoder() + (nL * COUNTS_PER_INCH);
 		m_RIGHT_ENCODER_OFFSET = m_RIGHT_ENCODER_OFFSET - getREncoder() + (nR * COUNTS_PER_INCH);
 		m_BACK_ENCODER_OFFSET = m_BACK_ENCODER_OFFSET - getBEncoder() + (nB * COUNTS_PER_INCH);
+		resetLastEncoders(nL * COUNTS_PER_INCH, nR * COUNTS_PER_INCH, nB * COUNTS_PER_INCH);
+	}
+
+	private void resetLastEncoders(double nL, double nR, double nB) {
+		lastPost = new double[]{nL, nR, nB};
 	}
 	
 }
