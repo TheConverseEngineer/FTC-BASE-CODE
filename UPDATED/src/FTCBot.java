@@ -23,6 +23,7 @@ public class FTCBot extends MecanumRobot
       currentState = state.stage;
       complete = state.complete;
       driveTowardsPoint(state.point);
+      updateOdometry();
     }
     stop();
   }
