@@ -30,7 +30,7 @@ public class ControllerTest extends OpMode
   public FTCBot bot;
   
   @Override
-  public void inti() {
+  public void init() {
     bot = new FTCBot(hardwareMap);
   }
   
