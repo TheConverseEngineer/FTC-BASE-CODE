@@ -19,45 +19,48 @@ public class Trajectory
   public Trajectory(Waypoint[] _waypoints) {
     waypoints = _waypoints;
     lineCount = waypoints.lenght - 1;
-    paths.lenght = lineCount;
+    paths.length = lineCount;
     for (int i = 0; i < lineCount; i++) {
-      paths[i] = new PathLine(waypoints[i].point, waypoints[i+1].point, waypoints[i+1].absolute);   
+      paths[i] = new PathLine(waypoints[i], waypoints[i+1], waypoints[i+1].absolute);   
     }
   }
   
   
   public PathState getRobotTarget(Point pos, int currentState) {
     
-    // Check if this is the last line 
-    if ()
-    int complete = false;
-    int newState = currentState;
     currentLine = paths[currentState];
-    nextLine = (currentState == lineCount - 1) ? currentLine : paths[currentState + 1]; 
-      
-    if (currentLine.absolute == true) { // If current line is a fixed (no-smoothing) line
-      // Check if close enough to transfer
-      newState = currentLine.B.distToPoint(pos) < ABSOLUTE_TRAJECTORY_REACH_RANGE ? currentState + 1 : currentState;
-      complete = (newState == lineCount);
-      return new PathState(currentLine.B, newState, complete);
-    }
-    
     // Get the closest position on the current line
     Point closestPoint = getClosestPoint(currentLine.A, currentLine.B, pos);
+    // Find intersection points on this line
+    Point[] intersectionsOnThisLine = getCircleLineIntersectionPoints(currentLine.A, currentLine.B, closestPoint, currentLine.wB.range);
     
-    // Find intersection points on this line and the next line
-    Point[] intersectionsOnThisLine = getCircleLineIntersectionPoints(currentLine.A, currentLine.B, closestPoint, waypoints[currentState + 1]);
+    // Check if this is the last line 
+    if (currentState + 1 == lineCount) {
+      // target
+      Point target = currentLine.absolute ? currentLine.B : (intersectionsOnThisLine[intersectionsOnThisLine.length - 1]);
+      bool complete = currentLine.B.distToPoint(pos) < currentLine.wB.range;
+      return new PathState(target, currentState, complete);
+      
+    }
+    
     Point[] intersectionsOnNextLine = getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1]); 
     
-    // Next line in transfer range
-    if (intersectionsOnNextLine.lenght > 0) {
-      if (intersectionsOnNextLine.lenght == 1) {
-        Point pointToFollow = intersectionsOnNextLine[0];
-      } else if (intersectionsOnNextLine.lenght == 2) {
-        Point pointToFollow = nextLine.getFurthestPoint(intersectionsOnNextLine);
+    // Check if this is an absolute line
+    if (currentLine.absolute) {
+      Point target = currentLine.B
+      int newState = currentState;
+      // Check if in range for transfer
+      if (currentLine.B.distToPoint(pos) < currentLine.wB.range) {
+        target = nextLine.absolute ? nextLine.B : nextLine.getFurthestPoint(intersectionsOnNextLine);
+        newState = currentState + 1;
       }
-      
-  }
+      return new PathState(target, newState, false);
+    }
     
+    // This is not an absolute line nor the last line
+    Point pointToFollow = (intersectionsOnNextLine.lenght > 0) ? nextLine.getFurthestPoint(intersectionsOnNextLine) : currentLine.getFurthestPoint(intersectionsOnThisLine);
+    int newStage = currentStage +  ((intersectionsOnNextLine.lenght > 0) ? 1 : 0);
+    return new PathState(pointToFollow, newStage, false);   
+  }   
   
 }
