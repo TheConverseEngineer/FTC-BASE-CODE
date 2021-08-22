@@ -1,11 +1,14 @@
 package UPDATED.src.path;
 
 import UPDATED.src.geometry.Point;
+import UPDATED.src.path.Waypoint;
 
 public class PathLine
 {
   public Point A;
   public Point B;
+  public Waypoint wA;
+  public Waypoint wB;
   public bool absolute;
   
   
@@ -14,9 +17,11 @@ public class PathLine
    * @param _B     The ending point on this line
    * @param _abs   if the robot should follow this line or interpolate for smoothness
    */
-  public PathLine (Point _A, Point _B, _abs) {
-    A = _A;
-    B = _B;
+  public PathLine (Waypoint _A, Waypoint _B, _abs) {
+    A = _A.point;
+    B = _B.point;
+    wA = _A;
+    wB = _B;
     absolute = _abs; 
   }
   
