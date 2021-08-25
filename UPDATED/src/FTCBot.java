@@ -25,7 +25,7 @@ public class FTCBot extends MecanumRobot
       PathState state = traj.getRobotTarget(new Point(m_X, m_Y), currentState);
       currentState = state.stage;
       complete = state.complete;
-      driveTowardsPoint(state.point);
+      driveTowardsPoint(state.point.x, state.point.y, m_THETA, 1d);
       updateOdometry();
     }
     stop();
