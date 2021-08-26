@@ -11,6 +11,7 @@ import java.lang.Math.*;
 
 public class FTCBot extends MecanumRobot
 {
+  private ROBOT_DATA data = new ROBOT_DATA;
   public FTCBot(HardwareMap hwMap) {
     super(hwMap);
   }
@@ -22,10 +23,10 @@ public class FTCBot extends MecanumRobot
     bool complete = false;
     int currentState = 0;
     while (!complete) {
-      PathState state = traj.getRobotTarget(new Point(m_X, m_Y), currentState);
+      PathState state = traj.getRobotTarget(new Point(data.m_X, data.m_Y), currentState);
       currentState = state.stage;
       complete = state.complete;
-      driveTowardsPoint(state.point.x, state.point.y, m_THETA, 1d);
+      driveTowardsPoint(state.point.x, state.point.y, data.m_THETA, 1d);
       updateOdometry();
     }
     stop();
@@ -36,7 +37,7 @@ public class FTCBot extends MecanumRobot
    * @return   a double list with {x, y, rotation}
    */
   public double[] getImperialPosition() {
-    return new double[]{m_X / COUNTS_PER_INCH, m_Y / COUNTS_PER_INCH, Math.toDegrees(m_THETA)};
+    return new double[]{data.m_X / data.COUNTS_PER_INCH, data.m_Y / data.COUNTS_PER_INCH, Math.toDegrees(data.m_THETA)};
   }
 
 }

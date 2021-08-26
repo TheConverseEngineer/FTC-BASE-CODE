@@ -7,21 +7,21 @@ import team7786.main2021.ROBOT_DATA.*;
 // This code serves as a base class for a 4 motor drivetrain
 public class Robot
 {
-
+	private ROBOT_DATA data = new ROBOT_DATA;
   // Declare Drive Motors and Array
 	private DcMotor leftFrontDrive, rightRearDrive, rightFrontDrive, leftRearDrive;
 	private DcMotor[] drivers;
-	private boolean[] MOTOR_INVERTED = new boolean[4];
+
 
   /** Constructor for base class robot
    * @param hwMap     the hardware map
    */
   public Robot(HardwareMap hwMap) {
     // Initialize the motor hardware variables
-		leftFrontDrive = hwMap.get(DcMotor.class, LEFT_FRONT_NAME);
-		leftRearDrive = hwMap.get(DcMotor.class, RIGHT_FRONT_NAME);
-		rightFrontDrive = hwMap.get(DcMotor.class, LEFT_REAR_NAME);
-		rightRearDrive = hwMap.get(DcMotor.class, RIGHT_REAR_NAME);
+		leftFrontDrive = hwMap.get(DcMotor.class, data.LEFT_FRONT_NAME);
+		leftRearDrive = hwMap.get(DcMotor.class, data.RIGHT_FRONT_NAME);
+		rightFrontDrive = hwMap.get(DcMotor.class, data.LEFT_REAR_NAME);
+		rightRearDrive = hwMap.get(DcMotor.class, data.RIGHT_REAR_NAME);
 
 		// Initialize the motor array
 
@@ -30,7 +30,7 @@ public class Robot
 
     // set motor orientations (positive power should move wheel clockwise)
 		for (i = 0; i < 4; i++) {
-			if (MOTOR_INVERTED[i] == true) {
+			if (data.MOTOR_INVERTED[i] == true) {
 				drivers[i].setDirection(DcMotor.Direction.REVERSE);
 			}
 		}
@@ -76,8 +76,8 @@ public class Robot
 	}
 
 	public double reduceRotation() {
-		while (m_THETA >= Math.PI * 2 || m_THETA < 0) {
-			m_THETA = m_THETA - Math.PI * (m_THETA > 0 ? -2 : 2);
+		while (data.m_THETA >= Math.PI * 2 || m_THETA < 0) {
+			data.m_THETA = data.m_THETA - Math.PI * (m_THETA > 0 ? -2 : 2);
 		}
 	}
 

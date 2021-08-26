@@ -8,7 +8,7 @@ import java.lang.Math.*;
 
 public class MecanumRobot extends Robot
 {
-
+  private ROBOT_DATA data = new ROBOT_DATA;
   // Stores the robot pose found in the last update.
   private double[] lastPose;
 
@@ -16,6 +16,7 @@ public class MecanumRobot extends Robot
   public MecanumRobot(HardwareMap hwMap) {
     super(hwMap);
     lastPose = {0d, 0d, 0d};
+
   }
 
   /** Read the current encoder values and update the last values.
@@ -49,9 +50,9 @@ public class MecanumRobot extends Robot
     double dM = (dR+dL) / 2;
     double dTheta = (dR-dL) / TRACK_WIDTH;
 
-    m_X = m_X + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.cos(m_THETA + dTheta/2) + dB * Math.cos(m_Theta - Math.PI/2 + dTheta/2);
-    m_Y = m_Y + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.sin(m_THETA + dTheta/2) + dB * Math.sin(m_Theta - Math.PI/2 + dTheta/2);
-    m_THETA = m_THETA + dTheta;
+    m_X = m_X + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.cos(data.m_THETA + dTheta/2) + dB * Math.cos(data.m_Theta - Math.PI/2 + dTheta/2);
+    m_Y = m_Y + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.sin(data.m_THETA + dTheta/2) + dB * Math.sin(data.m_Theta - Math.PI/2 + dTheta/2);
+    data.m_THETA = data.m_THETA + dTheta;
 
     reduceRotation();
   }
@@ -143,9 +144,9 @@ public class MecanumRobot extends Robot
 	}
 
   public void resetEncoders(double nL, double nR, double nB) {
-		m_LEFT_ENCODER_OFFSET = m_LEFT_ENCODER_OFFSET - getLEncoder() + nL;
-		m_RIGHT_ENCODER_OFFSET = m_RIGHT_ENCODER_OFFSET - getREncoder() + nR;
-		m_BACK_ENCODER_OFFSET = m_BACK_ENCODER_OFFSET - getBEncoder() + nB;
+		data.m_LEFT_ENCODER_OFFSET = data.m_LEFT_ENCODER_OFFSET - getLEncoder() + nL;
+		data.m_RIGHT_ENCODER_OFFSET = data.m_RIGHT_ENCODER_OFFSET - getREncoder() + nR;
+		data.m_BACK_ENCODER_OFFSET = data.m_BACK_ENCODER_OFFSET - getBEncoder() + nB;
 		resetLastEncoders(nL, nR, nB);
 
 	}
