@@ -1,14 +1,26 @@
 package team7786.main2021.geometry;
 
+/**
+* This represents a single point on a 2 dimensional plane
+* @see team7786.main2021.geometry.Graph
+* @author TheConverseEngineer
+*/
 public class Point
 {
+  /**
+  * The x coordinate of the point
+  */
   public double x;
+
+  /**
+  * The y coordinate of the point
+  */
   public double y;
 
 
   /**  Constructor for the point class
-   * @param x    the x value of the point
-   * @param y    the y value of the point
+   * @param _x    the x value of the point
+   * @param _y    the y value of the point
    */
   public Point(double _x, double _y) {
     x = _x;
