@@ -15,7 +15,7 @@ public class FTCBot extends MecanumRobot
     super(hwMap);
   }
 
-  /*  Make the robot follow a trajectory
+  /**  Make the robot follow a trajectory
    * @param traj    the trajectory that the robot should follow
    */
   public void executeTrajectory(Trajectory traj) {
@@ -32,7 +32,7 @@ public class FTCBot extends MecanumRobot
   }
 
 
-  /* Returns the position and rotation of the robot in inches and degrees
+  /** Returns the position and rotation of the robot in inches and degrees
    * @return   a double list with {x, y, rotation}
    */
   public double[] getImperialPosition() {

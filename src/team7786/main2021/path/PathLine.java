@@ -12,7 +12,7 @@ public class PathLine
   public bool absolute;
 
 
-  /* Constructor for class PathLine
+  /** Constructor for class PathLine
    * @param _A     The starting point on this line
    * @param _B     The ending point on this line
    * @param _abs   if the robot should follow this line or interpolate for smoothness
@@ -26,7 +26,7 @@ public class PathLine
   }
 
 
-  /* Takes two points and returns the one closest to the end of the line
+  /** Takes two points and returns the one closest to the end of the line
    * @param points   the array consisting of the two points
    * @return         the point closest to the end
    */
@@ -40,7 +40,7 @@ public class PathLine
   }
 
 
-  /* Overload of getFurthestPoint (previous) for convenience
+  /** Overload of getFurthestPoint (previous) for convenience
    * @param pointA   the first point
    * @param pointB   the second point
    * @return         the point closest to the end
@@ -52,7 +52,7 @@ public class PathLine
   }
 
 
-  /* Calculates the distance between a given point and the end of the line
+  /** Calculates the distance between a given point and the end of the line
    * @param p    a point on this line
    * @return     the distance from point p to the end of the line
    */

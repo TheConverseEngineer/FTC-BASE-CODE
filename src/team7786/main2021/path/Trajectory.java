@@ -15,7 +15,7 @@ public class Trajectory
   public int lineCount;
 
 
-  /* Constructor for class Trajector
+  /** Constructor for class Trajector
    * @param _waypoints     a list of waypoint objects that the spline should follow
    */
   public Trajectory(Waypoint[] _waypoints) {
@@ -28,7 +28,7 @@ public class Trajectory
   }
 
 
-  /* Returns the current state of the trajectory follower, the position that the robot should go towards, and if the trajectory is done'
+  /** Returns the current state of the trajectory follower, the position that the robot should go towards, and if the trajectory is done'
    * @param pos
    * @param currentState    the current step in the trajectory that the robot is in
    * @return                A path state object with the target position, the trajectory step, and if the trajectory is complete

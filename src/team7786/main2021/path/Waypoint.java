@@ -10,7 +10,7 @@ public class Waypoint
   public double range;
 
 
-  /* Constructor for Waypoint
+  /** Constructor for Waypoint
    * @param x    the x value of waypoint
    * @param y    the y value of the waypoint
    * Will allow the robot to interpolate and form a spline to maximize smoothness
@@ -22,7 +22,7 @@ public class Waypoint
   }
 
 
-  /* Overload of constructor for Waypoint
+  /**Overload of constructor for Waypoint
    * @param x    the x value of waypoint
    * @param y    the y value of the waypoint
    * @param abs  Setting this to false will force the robot to follow this line exactly
@@ -34,7 +34,7 @@ public class Waypoint
   }
 
 
-  /* Overload of constructor for Waypoint
+  /**Overload of constructor for Waypoint
    * @param x           the x value of waypoint
    * @param y           the y value of the waypoint
    * @param abs         Setting this to false will force the robot to follow this line exactly
