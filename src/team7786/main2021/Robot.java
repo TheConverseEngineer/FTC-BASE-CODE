@@ -11,6 +11,7 @@ public class Robot
   // Declare Drive Motors and Array
 	private DcMotor leftFrontDrive, rightRearDrive, rightFrontDrive, leftRearDrive;
 	private DcMotor[] drivers;
+	private boolean[] MOTOR_INVERTED = new boolean[4];
 
   /** Constructor for base class robot
    * @param hwMap     the hardware map
