@@ -3,6 +3,11 @@ package team7786.main2021.geometry;
 import team7786.main2021.geometry.Point;
 import java.lang.Math.*;
 
+/**
+* This represents a single 2 dimensional plane upon which points can exist
+* @see team7786.main2021.geometry.Point
+* @author TheConverseEngineer
+*/
 public class Graph
 {
   /** Method to find the point closest to point P on line AB
