@@ -3,9 +3,9 @@ package team7786.main2021.geometry;
 import team7786.main2021.geometry.Point;
 import java.lang.Math.*;
 
-public static class Graph
+public class Graph
 {
-  /* Method to find the point closest to point P on line AB
+  /** Method to find the point closest to point P on line AB
    * @param A     any point on line AB
    * @param B     any other point on line AB
    * @param P     the point P
@@ -23,7 +23,7 @@ public static class Graph
   }
 
 
-  /* Method to find all intersection points between line AB and circle C
+  /** Method to find all intersection points between line AB and circle C
    * @param A        any point on line AB
    * @param B        any other point on line AB
    * @param C        the center of circle C

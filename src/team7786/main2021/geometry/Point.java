@@ -6,7 +6,7 @@ public class Point
   public double y;
 
 
-  /* Constructor for the point class
+  /**  Constructor for the point class
    * @param x    the x value of the point
    * @param y    the y value of the point
    */
@@ -16,7 +16,7 @@ public class Point
   }
 
 
-  /* Adds another point to this point
+  /**  Adds another point to this point
    * @param pointToAdd     the point that should be added to this point
    * @return               the sum
    */
@@ -27,7 +27,7 @@ public class Point
   }
 
 
-  /* Subtracts another point from this point
+  /**  Subtracts another point from this point
    * @param pointToSubtract     the point that should be subtracted to this point
    * @return                    the difference
    */
@@ -38,7 +38,7 @@ public class Point
   }
 
 
-  /* Subtracts this point from another point
+  /**  Subtracts this point from another point
    * @param pointToSubtract     the point that this point should be subtracted from
    * @return                    the difference
    */
@@ -49,7 +49,7 @@ public class Point
   }
 
 
-  /* Multiplies a point by a double
+  /**  Multiplies a point by a double
    * @param a    the scalar that the point should be multiplied by
    * @return     the product
    */
@@ -58,7 +58,7 @@ public class Point
   }
 
 
-  /* Finds the distance between two points
+  /**  Finds the distance between two points
    * @param p   any other point
    * @return    the distance between this point and point P
    */

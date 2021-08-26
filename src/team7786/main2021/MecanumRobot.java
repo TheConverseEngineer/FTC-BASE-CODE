@@ -18,7 +18,7 @@ public class MecanumRobot extends Robot
     lastPose = {0d, 0d, 0d};
   }
 
-  /* Read the current encoder values and update the last values.
+  /** Read the current encoder values and update the last values.
    * @return a double array {change in Left, Change in Right, Change in Back}
    */
   private double[] getNewReadings() {
@@ -30,7 +30,7 @@ public class MecanumRobot extends Robot
 
   }
 
-  /* Calculates the heading and location of the robot using only the odometry encoders
+  /** Calculates the heading and location of the robot using only the odometry encoders
    * Variable breakdown for readability:
    *   dPose                   An array consisting of {dL, dR, dB}
    *   dL                      The number of left encoder ticks between now and last update
@@ -57,7 +57,7 @@ public class MecanumRobot extends Robot
   }
 
 
-  /* Drives the robot in a specified direction
+  /** Drives the robot in a specified direction
    * @param theta       the direction the robot should travel
    * @param speed       the speed at which the robot should travel
    * @param turnSpeed   the speed at which the robot should turn whilst moving
@@ -90,7 +90,7 @@ public class MecanumRobot extends Robot
   }
 
 
-  /* Drives the robot using parameters that can be inputed from a controller
+  /** Drives the robot using parameters that can be inputed from a controller
    * @param x                  the x value of the drive joystick
    * @param y                  the y value of the drive joystick
    * @param rotX               the x value of the turn joystick
@@ -107,7 +107,7 @@ public class MecanumRobot extends Robot
 	}
 
 
-	/* Drives the robot towards a specified point on the field
+	/** Drives the robot towards a specified point on the field
 	 * @param x       the x value of the point
 	 * @param y       the y value of the point
 	 * @param fRom    the rotation that the robot should end up at
@@ -128,7 +128,7 @@ public class MecanumRobot extends Robot
 	}
 
 
-	/* Overload of previous to drives the robot towards a specified point on the field and specify turn speed
+	/** Overload of previous to drives the robot towards a specified point on the field and specify turn speed
 	 * @param x       the x value of the point
 	 * @param y       the y value of the point
 	 * @param fRom    the rotation that the robot should end up at
