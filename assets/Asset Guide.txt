@@ -1,4 +1,0 @@
-All assets are found in this folder.
-Check out the code folder for source code!
-
-Assets in this folder can include images, TFLite files, and other reference files.
