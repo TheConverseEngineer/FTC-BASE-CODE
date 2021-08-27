@@ -1,8 +1,8 @@
-package team7786.main2021;
+package src.team7786.main2021;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import java.lang.Math.*;
-import team7786.main2021.ROBOT_DATA.*;
+import static src.team7786.main2021.ROBOT_DATA.*;
 
 // This code serves as a base class for a 4 motor drivetrain
 public class Robot

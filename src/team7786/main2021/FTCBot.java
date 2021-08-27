@@ -1,11 +1,11 @@
-package team7786.main2021;
+package src.team7786.main2021;
 
-import UPDATED.src.MecanumRobot;
+import src.team7786.main2021.MecanumRobot;
 
-import UPDATED.src.ROBOT_DATA.*;
-import UPDATED.src.path.Trajectory;
-import UPDATED.src.path.PathState;
-import UPDATED.src.geometry.Point;
+import static src.team7786.main2021.ROBOT_DATA.*;
+import src.team7786.main2021.path.Trajectory;
+import src.team7786.main2021.path.PathState;
+import src.team7786.main2021.geometry.Point;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import java.lang.Math.*;
 

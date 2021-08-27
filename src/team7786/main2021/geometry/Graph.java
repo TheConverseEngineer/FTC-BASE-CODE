@@ -1,4 +1,4 @@
-package team7786.main2021.geometry;
+package src.team7786.main2021.geometry;
 
 import team7786.main2021.geometry.Point;
 import java.lang.Math.*;
