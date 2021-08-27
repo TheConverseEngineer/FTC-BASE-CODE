@@ -1,7 +1,7 @@
-package team7786.main2021.path;
+package src.team7786.main2021.path;
 
 import team7786.main2021.geometry.Point;
-import team7786.main2021.ROBOT_DATA;
+import static team7786.main2021.ROBOT_DATA.*;
 
 public class Waypoint
 {

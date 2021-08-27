@@ -1,8 +1,8 @@
-package team7786.main2021;
+package src.team7786.main2021;
 
-import team7786.main2021.Robot;
+import src.team7786.main2021.Robot;
 
-import team7786.main2021.ROBOT_DATA.*;
+import static src.team7786.main2021.ROBOT_DATA.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import java.lang.Math.*;
 

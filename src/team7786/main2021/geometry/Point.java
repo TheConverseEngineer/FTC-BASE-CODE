@@ -1,4 +1,4 @@
-package team7786.main2021.geometry;
+package src.team7786.main2021.geometry;
 
 /**
 * This represents a single point on a 2 dimensional plane
