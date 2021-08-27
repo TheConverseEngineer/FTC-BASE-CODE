@@ -42,7 +42,7 @@ public class DriveToPointTest extends OpMode
     if (gamepad1.left_stick_x + gamepad1.left_stick_y + gamepad1.right_stick.x > 0) {
       bot.driveWithController(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick.x, true);
     } else {
-      bot.driveTowardsPoint(24d * COUNTS_PER_INCH, 0d, 0d, 0.5d);
+      bot.driveTowardsPoint(0d, 24d * COUNTS_PER_INCH, 0d, 0.5d);
     }
     
     bot.updateOdometry();
