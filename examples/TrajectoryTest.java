@@ -30,12 +30,17 @@ import src.team7786.main2021.path.Waypoint;
 //@Disabled
 public class DriveToPointTest extends OpMode
 {
+  // Declare the FTCBot
   public FTCBot bot;
+  
+  // Declare the trajectory
   public Trajectory traj;
   
   @Override
   public void init() {
+    // instantiate the robot
     bot = new FTCBot(hardwareMap);
+    // Inset trajectory
     traj = new Trajectory(new Waypoint[]{new Waypoint(0d, 0d), 
                                          new Waypoint(0d, 24d),
                                          new Waypoint(24d, 24d),
@@ -46,6 +51,7 @@ public class DriveToPointTest extends OpMode
   
   @Override
   public void start() {
+    // Execute trajectroy
     bot.executeTrajectory(traj);
   }
 }
