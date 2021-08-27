@@ -7,7 +7,7 @@ public static class ROBOT_DATA
   /****************************** CONSTANTS ******************************/
   // Hardware map names
   static final String LEFT_FRONT_NAME = "leftFrontDrive";
-  static final String = "rightFrontDrive";
+  static final String RIGHT_FRONT_NAME = "rightFrontDrive";
   static final String LEFT_REAR_NAME = "leftRearDrive";
   static final String RIGHT_REAR_NAME = "rightRearDrive";
 
