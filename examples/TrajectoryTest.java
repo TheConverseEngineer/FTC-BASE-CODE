@@ -38,9 +38,9 @@ public class DriveToPointTest extends OpMode
   
   @Override
   public void init() {
-    // instantiate the robot
+    // Create the robot
     bot = new FTCBot(hardwareMap);
-    // Inset trajectory
+    // Create trajectory
     traj = new Trajectory(new Waypoint[]{new Waypoint(0d, 0d), 
                                          new Waypoint(0d, 24d),
                                          new Waypoint(24d, 24d),
@@ -51,7 +51,7 @@ public class DriveToPointTest extends OpMode
   
   @Override
   public void start() {
-    // Execute trajectroy
+    // Execute trajectory
     bot.executeTrajectory(traj);
   }
 }
