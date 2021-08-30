@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.firstinspires.ftc.teamcode.team7786"},{"l":"org.firstinspires.ftc.teamcode.team7786.geometry"},{"l":"org.firstinspires.ftc.teamcode.team7786.path"}]

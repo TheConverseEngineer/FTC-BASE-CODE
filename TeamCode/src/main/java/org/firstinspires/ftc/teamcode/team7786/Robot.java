@@ -65,7 +65,9 @@ public class Robot
 	}
 
 
-	/** Overload of clipRange (previous) for increased conveniance. Assumes min to be -1 and max to be 1.*/
+	/** Overload of clipRange (previous) for increased conveniance. Assumes min to be -1 and max to be 1.
+	 * @param x 
+	 * */
 	public double clipRange(double x) {
 		return clipRange(x, -1d, 1d);
 }

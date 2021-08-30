@@ -29,7 +29,7 @@ public class Trajectory
 
 
     /** Returns the current state of the trajectory follower, the position that the robot should go towards, and if the trajectory is done'
-     * @param pos
+     * @param pos             Position of the robot's target
      * @param currentState    the current step in the trajectory that the robot is in
      * @return                A path state object with the target position, the trajectory step, and if the trajectory is complete
      */
