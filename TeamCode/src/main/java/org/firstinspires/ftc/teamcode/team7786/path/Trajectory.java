@@ -50,7 +50,8 @@ public class Trajectory
 
     }
 
-    Point[] intersectionsOnNextLine = Graph.getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1]);
+    Point[] intersectionsOnNextLine = Graph.getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1].point.distance(closestPoint));
+
 
     // Check if this is an absolute line
     if (currentLine.absolute) {
