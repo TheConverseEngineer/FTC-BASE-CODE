@@ -71,7 +71,7 @@ public class MecanumRobot extends Robot
 		wheelSpeeds[3] = Math.sin(theta + Math.PI / 4);
 
 		// Normalize data
-		normalize(wheelSpeeds, magnitude);
+		normalize(wheelSpeeds, speed);
 
 		// Factor in turning
 		wheelSpeeds[0] += turnSpeed;
@@ -80,7 +80,7 @@ public class MecanumRobot extends Robot
 		wheelSpeeds[3] -= turnSpeed;
 
 		// Re-Normalize data
-		normalize(wheelSpeeds, magintude);
+		normalize(wheelSpeeds, speed);
 
 		// Apply Movement
 		tankDrive(wheelSpeeds);

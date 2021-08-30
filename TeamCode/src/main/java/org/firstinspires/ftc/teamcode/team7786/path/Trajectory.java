@@ -29,13 +29,25 @@ public class Trajectory
 
 
   /** Returns the current state of the trajectory follower, the position that the robot should go towards, and if the trajectory is done'
-   * @param pos
+   * @param pos             The position of the robot
    * @param currentState    the current step in the trajectory that the robot is in
    * @return                A path state object with the target position, the trajectory step, and if the trajectory is complete
    */
   public PathState getRobotTarget(Point pos, int currentState) {
 
     PathLine currentLine = paths[currentState];
+    PathLine nextLine;
+    // Check if this is the last line
+    if (currentState + 1 == lineCount) {
+      // target
+      Point target = currentLine.absolute ? currentLine.B : (intersectionsOnThisLine[-1]);
+      boolean complete = currentLine.B.distToPoint(pos) < currentLine.wB.range;
+      return new PathState(target, currentState, complete);
+
+    } else {
+      nextLine = paths[currentState+1];
+    }
+
     // Get the closest position on the current line
     Point closestPoint = Graph.getClosestPoint(currentLine.A, currentLine.B, pos);
     // Find intersection points on this line
@@ -50,7 +62,7 @@ public class Trajectory
 
     }
 
-    Point[] intersectionsOnNextLine = Graph.getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1]);
+    Point[] intersectionsOnNextLine = Graph.getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1].point);
 
     // Check if this is an absolute line
     if (currentLine.absolute) {
@@ -66,7 +78,7 @@ public class Trajectory
 
     // This is not an absolute line nor the last line
     Point pointToFollow = (intersectionsOnNextLine.length > 0) ? nextLine.getFurthestPoint(intersectionsOnNextLine) : currentLine.getFurthestPoint(intersectionsOnThisLine);
-    int newStage = currentStage +  ((intersectionsOnNextLine.length > 0) ? 1 : 0);
+    int newStage = currentState + ((intersectionsOnNextLine.length > 0) ? 1 : 0);
     return new PathState(pointToFollow, newStage, false);
   }
 
