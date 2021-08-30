@@ -11,16 +11,22 @@ import java.lang.Math.*;
 
 public class FTCBot extends MecanumRobot
 {
+  private Trajectory traj;
+  private int currentState;
+  private bool complete;
+  
   public FTCBot(HardwareMap hwMap) {
     super(hwMap);
   }
-
+  
+  
   /**  Make the robot follow a trajectory
    * @param traj    the trajectory that the robot should follow
    */
-  public void executeTrajectory(Trajectory traj) {
-    bool complete = false;
-    int currentState = 0;
+  public void startTrajectory(Trajectory _traj) {
+    traj = _traj;
+    currentState = 0;
+    complete = false;
     while (!complete) {
       PathState state = traj.getRobotTarget(new Point(m_X, m_Y), currentState);
       currentState = state.stage;
@@ -30,6 +36,20 @@ public class FTCBot extends MecanumRobot
     }
     stop();
   }
+  
+  
+  public int updateTrajectory() {
+    PathState state = traj.getRobotTarget(new Point(m_X, m_Y), currentState);
+    currentState = state.stage;
+    complete = state.complete;
+    driveTowardsPoint(state.point.x, state.point.y, m_THETA, 1d);
+    updateOdometry():
+    if (complete) {
+    
+    }
+  }
+  
+  private
 
 
   /** Returns the position and rotation of the robot in inches and degrees
