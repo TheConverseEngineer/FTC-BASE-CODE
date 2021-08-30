@@ -35,7 +35,7 @@ public class Graph
    */
   public static Point[] getCircleLineIntersectionPoints(Point A, Point B, Point C, double radius) {
     Point BA = B.subtractPoint(A);
-    Point CA = C.subtractPoint(A);;
+    Point CA = C.subtractPoint(A);
 
     double a = BA.x * BA.x + BA.y * BA.y;
     double bBy2 = BA.x * CA.x + BA.y * CA.y;
