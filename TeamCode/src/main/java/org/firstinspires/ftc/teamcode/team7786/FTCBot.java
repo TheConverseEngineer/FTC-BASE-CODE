@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode.team7786;
 
-import org.firstinspires.ftc.teamcode.team7786.MecanumRobot;
 
 import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
 import org.firstinspires.ftc.teamcode.team7786.path.Trajectory;
 import org.firstinspires.ftc.teamcode.team7786.path.PathState;
 import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import java.lang.Math.*;
 
 public class FTCBot extends MecanumRobot
 {

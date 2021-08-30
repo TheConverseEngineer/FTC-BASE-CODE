@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.team7786.geometry;
 
-import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
-import java.lang.Math.*;
 
 /**
 * This represents a single 2 dimensional plane upon which points can exist
