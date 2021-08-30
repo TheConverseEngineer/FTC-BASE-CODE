@@ -1,8 +1,9 @@
-package src.team7786.main2021;
+package org.firstinspires.ftc.teamcode.team7786;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import java.lang.Math.*;
-import static src.team7786.main2021.ROBOT_DATA.*;
+import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
 
 // This code serves as a base class for a 4 motor drivetrain
 public class Robot
@@ -26,10 +27,10 @@ public class Robot
 		// Initialize the motor array
 
 		//this right here is causing just so many problem
-		drivers = [leftFrontDrive, rightFrontDrive, leftRearDrive, rightRearDrive];
+		drivers = new DcMotor[leftFrontDrive, rightFrontDrive, leftRearDrive, rightRearDrive];
 
     // set motor orientations (positive power should move wheel clockwise)
-		for (i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (MOTOR_INVERTED[i] == true) {
 				drivers[i].setDirection(DcMotor.Direction.REVERSE);
 			}
@@ -49,7 +50,7 @@ public class Robot
 
   /** Stops all motors */
   public void stop () {
-    tankDrive(0d, 0d, 0d, 0d);
+    tankDrive(new double[]{0d, 0d, 0d, 0d});
   }
 
 
@@ -75,7 +76,7 @@ public class Robot
 			return input * Math.abs(input);
 	}
 
-	public double reduceRotation() {
+	public void reduceRotation() {
 		while (m_THETA >= Math.PI * 2 || m_THETA < 0) {
 			m_THETA = m_THETA - Math.PI * (m_THETA > 0 ? -2 : 2);
 		}

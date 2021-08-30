@@ -1,10 +1,7 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021;
+package org.firstinspires.ftc.teamcode.team7786;
 
-import org.firstinspires.ftc.teamcode.team7786.main2021.Robot;
-
-import static org.firstinspires.ftc.teamcode.team7786.main2021.ROBOT_DATA.*;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import java.lang.Math.*;
+import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumRobot extends Robot
 {
@@ -15,7 +12,7 @@ public class MecanumRobot extends Robot
 
   public MecanumRobot(HardwareMap hwMap) {
     super(hwMap);
-    lastPose = {0d, 0d, 0d};
+    lastPose = new double[]{0d, 0d, 0d};
   }
 
   /** Read the current encoder values and update the last values.
@@ -24,8 +21,8 @@ public class MecanumRobot extends Robot
   private double[] getNewReadings() {
     double[] readings = {getLEncoder(), getREncoder(), getBEncoder()};
     double[] deltaReadings = {readings[0] - lastPose[0], readings[1] - lastPose[1], readings[2] - lastPose[2]};
-    lastPose = {readings[0], readings[1], readings[2]};
-    return deltaReadings
+    lastPose = new double[]{readings[0], readings[1], readings[2]};
+    return deltaReadings;
 
 
   }
@@ -41,16 +38,16 @@ public class MecanumRobot extends Robot
    *   m_X, m_Y, m_Theta       The x, y, and heading of the robot. Located in the static class ROBOT_DATA
    */
   public void updateOdometry() {
-    dPose = getNewReadings();
-    dL = dPose[0];
-    dR = dPOse[1];
-    dB = dPose[2];
+    double[] dPose = getNewReadings();
+    double dL = dPose[0];
+    double dR = dPose[1];
+    double dB = dPose[2];
 
     double dM = (dR+dL) / 2;
     double dTheta = (dR-dL) / TRACK_WIDTH;
 
-    m_X = m_X + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.cos(m_THETA + dTheta/2) + dB * Math.cos(m_Theta - Math.PI/2 + dTheta/2);
-    m_Y = m_Y + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.sin(m_THETA + dTheta/2) + dB * Math.sin(m_Theta - Math.PI/2 + dTheta/2);
+    m_X = m_X + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.cos(m_THETA + dTheta/2) + dB * Math.cos(m_THETA - Math.PI/2 + dTheta/2);
+    m_Y = m_Y + ((dM / dTheta) * Math.sin(dTheta) / Math.cos(dTheta)) * Math.sin(m_THETA + dTheta/2) + dB * Math.sin(m_THETA - Math.PI/2 + dTheta/2);
     m_THETA = m_THETA + dTheta;
 
     reduceRotation();
@@ -96,7 +93,7 @@ public class MecanumRobot extends Robot
    * @param rotX               the x value of the turn joystick
    * @param fieldCentric       setting this to true will drive the robot relative to the field (reccomended)
    */
-  public void driveWithController(double x, double y, double rotX, bool fieldCentric);
+  public void driveWithController(double x, double y, double rotX, boolean fieldCentric){
     double squareX = clipRange(squareInput(x));
     double squareY = clipRange(squareInput(y));
     double sqaureRotX = clipRange(squareInput(rotX));
@@ -110,16 +107,16 @@ public class MecanumRobot extends Robot
 	/** Drives the robot towards a specified point on the field
 	 * @param x       the x value of the point
 	 * @param y       the y value of the point
-	 * @param fRom    the rotation that the robot should end up at
+	 * @param fRot    the rotation that the robot should end up at
 	 * @param speed   the speed at which the robot should move
 	 */
 	public void driveTowardsPoint(double x, double y, double fRot, double speed) {
 		double deltaX = x - m_X;
-		double deltaY = y - mY;
+		double deltaY = y - m_Y;
 		double deltaRot = fRot - m_THETA;
 
 		if (Math.abs(deltaRot) > Math.PI) {
-			deltaRot = 2*Math.PI - abs(deltaRot) * -(deltaRot / abs(deltaRot));
+			deltaRot = 2*Math.PI - Math.abs(deltaRot) * -(deltaRot / Math.abs(deltaRot));
 		}
 
 		double turnSpeed = deltaRot / Math.PI * DRIVE_TO_POINT_TURN_TUNE;
@@ -131,29 +128,29 @@ public class MecanumRobot extends Robot
 	/** Overload of previous to drives the robot towards a specified point on the field and specify turn speed
 	 * @param x       the x value of the point
 	 * @param y       the y value of the point
-	 * @param fRom    the rotation that the robot should end up at
+	 * @param fRot    the rotation that the robot should end up at
 	 * @param speed   the speed at which the robot should move
 	 */
 	public void driveTowardsPoint(double x, double y, double fRot, double speed, double turnSpeed) {
 		double deltaX = x - m_X;
-		double deltaY = y - mY;
+		double deltaY = y - m_Y;
 		double deltaRot = fRot - m_THETA;
 		double heading = Math.atan2(deltaX, deltaY);
 		driveWithHeading(heading, speed, turnSpeed);
 	}
 
   public void resetEncoders(double nL, double nR, double nB) {
-		m_LEFT_ENCODER_OFFSET = m_LEFT_ENCODER_OFFSET - getLEncoder() + nL;
-		m_RIGHT_ENCODER_OFFSET = m_RIGHT_ENCODER_OFFSET - getREncoder() + nR;
-		m_BACK_ENCODER_OFFSET = m_BACK_ENCODER_OFFSET - getBEncoder() + nB;
+		m_LEFT_ENCODER_OFFSET = (int) (m_LEFT_ENCODER_OFFSET - getLEncoder() + nL);
+		m_RIGHT_ENCODER_OFFSET = (int) (m_RIGHT_ENCODER_OFFSET - getREncoder() + nR);
+		m_BACK_ENCODER_OFFSET = (int) (m_BACK_ENCODER_OFFSET - getBEncoder() + nB);
 		resetLastEncoders(nL, nR, nB);
 
 	}
 
 	public void resetEncodersImperial(double nL, double nR, double nB) {
-		m_LEFT_ENCODER_OFFSET = m_LEFT_ENCODER_OFFSET - getLEncoder() + (nL * COUNTS_PER_INCH);
-		m_RIGHT_ENCODER_OFFSET = m_RIGHT_ENCODER_OFFSET - getREncoder() + (nR * COUNTS_PER_INCH);
-		m_BACK_ENCODER_OFFSET = m_BACK_ENCODER_OFFSET - getBEncoder() + (nB * COUNTS_PER_INCH);
+		m_LEFT_ENCODER_OFFSET = (int) (m_LEFT_ENCODER_OFFSET - getLEncoder() + (nL * COUNTS_PER_INCH));
+		m_RIGHT_ENCODER_OFFSET = (int) (m_RIGHT_ENCODER_OFFSET - getREncoder() + (nR * COUNTS_PER_INCH));
+		m_BACK_ENCODER_OFFSET = (int) (m_BACK_ENCODER_OFFSET - getBEncoder() + (nB * COUNTS_PER_INCH));
 		resetLastEncoders(nL * COUNTS_PER_INCH, nR * COUNTS_PER_INCH, nB * COUNTS_PER_INCH);
 	}
 

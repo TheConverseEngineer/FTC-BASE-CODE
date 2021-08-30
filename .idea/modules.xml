@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FTC-BASE-CODE.iml" filepath="$PROJECT_DIR$/.idea/modules/FTC-BASE-CODE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/FTC-BASE-CODE.FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/FTC-BASE-CODE.FtcRobotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/FTC-BASE-CODE.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/FTC-BASE-CODE.TeamCode.iml" />
     </modules>
   </component>
 </project>

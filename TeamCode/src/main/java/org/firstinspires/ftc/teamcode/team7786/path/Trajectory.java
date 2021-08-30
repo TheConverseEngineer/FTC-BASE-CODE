@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021.path;
+package org.firstinspires.ftc.teamcode.team7786.path;
 
-import team7786.main2021.path.Waypoint;
-import team7786.main2021.path.PathLine;
-import team7786.main2021.path.PathState;
-import team7786.main2021.geometry.Point;
-import team7786.main2021.geometry.Graph.*;
-import static team7786.main2021.ROBOT_DATA.*;
+import org.firstinspires.ftc.teamcode.team7786.path.Waypoint;
+import org.firstinspires.ftc.teamcode.team7786.path.PathLine;
+import org.firstinspires.ftc.teamcode.team7786.path.PathState;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Graph;
+import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
 
 public class Trajectory
 {
@@ -20,8 +20,8 @@ public class Trajectory
    */
   public Trajectory(Waypoint[] _waypoints) {
     waypoints = _waypoints;
-    lineCount = waypoints.lenght - 1;
-    paths.length = lineCount;
+    lineCount = waypoints.length - 1;
+    paths = new PathLine[lineCount];
     for (int i = 0; i < lineCount; i++) {
       paths[i] = new PathLine(waypoints[i], waypoints[i+1], waypoints[i+1].absolute);
     }
@@ -35,26 +35,26 @@ public class Trajectory
    */
   public PathState getRobotTarget(Point pos, int currentState) {
 
-    currentLine = paths[currentState];
+    PathLine currentLine = paths[currentState];
     // Get the closest position on the current line
-    Point closestPoint = getClosestPoint(currentLine.A, currentLine.B, pos);
+    Point closestPoint = Graph.getClosestPoint(currentLine.A, currentLine.B, pos);
     // Find intersection points on this line
-    Point[] intersectionsOnThisLine = getCircleLineIntersectionPoints(currentLine.A, currentLine.B, closestPoint, currentLine.wB.range);
+    Point[] intersectionsOnThisLine = Graph.getCircleLineIntersectionPoints(currentLine.A, currentLine.B, closestPoint, currentLine.wB.range);
 
     // Check if this is the last line
     if (currentState + 1 == lineCount) {
       // target
       Point target = currentLine.absolute ? currentLine.B : (intersectionsOnThisLine[intersectionsOnThisLine.length - 1]);
-      bool complete = currentLine.B.distToPoint(pos) < currentLine.wB.range;
+      boolean complete = currentLine.B.distToPoint(pos) < currentLine.wB.range;
       return new PathState(target, currentState, complete);
 
     }
 
-    Point[] intersectionsOnNextLine = getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1]);
+    Point[] intersectionsOnNextLine = Graph.getCircleLineIntersectionPoints(nextLine.A, nextLine.B, closestPoint, waypoints[currentState + 1]);
 
     // Check if this is an absolute line
     if (currentLine.absolute) {
-      Point target = currentLine.B
+      Point target = currentLine.B;
       int newState = currentState;
       // Check if in range for transfer
       if (currentLine.B.distToPoint(pos) < currentLine.wB.range) {
@@ -65,8 +65,8 @@ public class Trajectory
     }
 
     // This is not an absolute line nor the last line
-    Point pointToFollow = (intersectionsOnNextLine.lenght > 0) ? nextLine.getFurthestPoint(intersectionsOnNextLine) : currentLine.getFurthestPoint(intersectionsOnThisLine);
-    int newStage = currentStage +  ((intersectionsOnNextLine.lenght > 0) ? 1 : 0);
+    Point pointToFollow = (intersectionsOnNextLine.length > 0) ? nextLine.getFurthestPoint(intersectionsOnNextLine) : currentLine.getFurthestPoint(intersectionsOnThisLine);
+    int newStage = currentStage +  ((intersectionsOnNextLine.length > 0) ? 1 : 0);
     return new PathState(pointToFollow, newStage, false);
   }
 

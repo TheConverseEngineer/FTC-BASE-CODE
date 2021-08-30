@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021.geometry;
+package org.firstinspires.ftc.teamcode.team7786.geometry;
 
-import team7786.main2021.geometry.Point;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
 import java.lang.Math.*;
 
 /**
 * This represents a single 2 dimensional plane upon which points can exist
-* @see team7786.main2021.geometry.Point
+* @see org.firstinspires.ftc.teamcode.team7786.geometry.Point
 * @author TheConverseEngineer
 */
 public class Graph

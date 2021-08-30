@@ -1,12 +1,13 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021;
+package org.firstinspires.ftc.teamcode.team7786;
 
-import org.firstinspires.ftc.teamcode.team7786.main2021.MecanumRobot;
+import org.firstinspires.ftc.teamcode.team7786.MecanumRobot;
 
-import static org.firstinspires.ftc.teamcode.team7786.main2021.ROBOT_DATA.*;
-import org.firstinspires.ftc.teamcode.team7786.main2021.path.Trajectory;
-import org.firstinspires.ftc.teamcode.team7786.main2021.path.PathState;
-import org.firstinspires.ftc.teamcode.team7786.main2021.geometry.Point;
+import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
+import org.firstinspires.ftc.teamcode.team7786.path.Trajectory;
+import org.firstinspires.ftc.teamcode.team7786.path.PathState;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import java.lang.Math.*;
 
 public class FTCBot extends MecanumRobot
@@ -19,7 +20,7 @@ public class FTCBot extends MecanumRobot
    * @param traj    the trajectory that the robot should follow
    */
   public void executeTrajectory(Trajectory traj) {
-    bool complete = false;
+    boolean complete = false;
     int currentState = 0;
     while (!complete) {
       PathState state = traj.getRobotTarget(new Point(m_X, m_Y), currentState);

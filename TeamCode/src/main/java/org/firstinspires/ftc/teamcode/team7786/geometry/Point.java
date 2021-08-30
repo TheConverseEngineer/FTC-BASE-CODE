@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021.geometry;
+package org.firstinspires.ftc.teamcode.team7786.geometry;
 
 /**
 * This represents a single point on a 2 dimensional plane

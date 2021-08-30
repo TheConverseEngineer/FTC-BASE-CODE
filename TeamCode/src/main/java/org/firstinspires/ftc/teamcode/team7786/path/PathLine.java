@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021.path;
+package org.firstinspires.ftc.teamcode.team7786.path;
 
-import org.firstinspires.ftc.teamcode.team7786.main2021.geometry.Point;
-import org.firstinspires.ftc.teamcode.team7786.main2021.path.Waypoint;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
+import org.firstinspires.ftc.teamcode.team7786.path.Waypoint;
 
 public class PathLine
 {
@@ -9,7 +9,7 @@ public class PathLine
   public Point B;
   public Waypoint wA;
   public Waypoint wB;
-  public bool absolute;
+  public boolean absolute;
 
 
   /** Constructor for class PathLine
@@ -17,7 +17,7 @@ public class PathLine
    * @param _B     The ending point on this line
    * @param _abs   if the robot should follow this line or interpolate for smoothness
    */
-  public PathLine (Waypoint _A, Waypoint _B, _abs) {
+  public PathLine (Waypoint _A, Waypoint _B, boolean _abs) {
     A = _A.point;
     B = _B.point;
     wA = _A;
@@ -34,8 +34,8 @@ public class PathLine
     if (points.length == 1) {
       return points[0];
     }
-    firstDist = B.distToPoint(points[0]);
-    secondDist = B.distToPoint(points[1]);
+    double firstDist = B.distToPoint(points[0]);
+    double secondDist = B.distToPoint(points[1]);
     return points[firstDist > secondDist ? 1 : 0];
   }
 
@@ -46,8 +46,8 @@ public class PathLine
    * @return         the point closest to the end
    */
   public Point getFurthestPoint(Point pointA, Point pointB) {
-    firstDist = B.distToPoint(pointA);
-    secondDist = B.distToPoint(pointB);
+    double firstDist = B.distToPoint(pointA);
+    double secondDist = B.distToPoint(pointB);
     return (firstDist > secondDist ? pointB : pointA);
   }
 

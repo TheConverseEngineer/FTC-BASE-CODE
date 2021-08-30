@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.team7786.main2021.path;
+package org.firstinspires.ftc.teamcode.team7786.path;
 
-import team7786.main2021.geometry.Point;
-import static team7786.main2021.ROBOT_DATA.*;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
+import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
 
 public class Waypoint
 {
   public Point point;
-  public bool absolute;
+  public boolean absolute;
   public double range;
 
 
@@ -25,9 +25,9 @@ public class Waypoint
   /**Overload of constructor for Waypoint
    * @param x    the x value of waypoint
    * @param y    the y value of the waypoint
-   * @param abs  Setting this to false will force the robot to follow this line exactly
+   * @param _abs  Setting this to false will force the robot to follow this line exactly
    */
-  public Waypoint(double x, double y, bool _abs) {
+  public Waypoint(double x, double y, boolean _abs) {
     point = new Point(x * COUNTS_PER_INCH, y * COUNTS_PER_INCH);
     absolute = _abs;
     range = DEFAULT_LINE_FOLLOW_RANGE;
@@ -37,10 +37,10 @@ public class Waypoint
   /**Overload of constructor for Waypoint
    * @param x           the x value of waypoint
    * @param y           the y value of the waypoint
-   * @param abs         Setting this to false will force the robot to follow this line exactly
+   * @param _abs         Setting this to false will force the robot to follow this line exactly
    * @param accuracy    How closely the robot should follow the line (higher values mean more smoothing)
    */
-  public Waypoint(double x, double y, bool _abs, double accuracy) {
+  public Waypoint(double x, double y, boolean _abs, double accuracy) {
     point = new Point(x * COUNTS_PER_INCH, y * COUNTS_PER_INCH);
     absolute = _abs;
     range = accuracy;
