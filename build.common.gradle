@@ -46,9 +46,7 @@ android {
             storeFile rootProject.file('libs/ftc.debug.keystore')
             storePassword 'android'
         }
-        lintOptions {
-            abortOnError false
-        }
+
     }
 
     aaptOptions {
