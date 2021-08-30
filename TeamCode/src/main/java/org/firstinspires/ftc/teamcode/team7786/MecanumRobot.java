@@ -80,7 +80,7 @@ public class MecanumRobot extends Robot
 		wheelSpeeds[3] -= turnSpeed;
 
 		// Re-Normalize data
-		normalize(wheelSpeeds);
+		normalize(wheelSpeeds, magintude);
 
 		// Apply Movement
 		tankDrive(wheelSpeeds);
@@ -96,7 +96,7 @@ public class MecanumRobot extends Robot
   public void driveWithController(double x, double y, double rotX, boolean fieldCentric){
     double squareX = clipRange(squareInput(x));
     double squareY = clipRange(squareInput(y));
-    double sqaureRotX = clipRange(squareInput(rotX));
+    double squareRotX = clipRange(squareInput(rotX));
 
     double heading = fieldCentric ? Math.atan2(squareX, squareY) - m_THETA : Math.atan2(squareX, squareY);
     double speed = Math.hypot(squareX, squareY);
@@ -155,7 +155,7 @@ public class MecanumRobot extends Robot
 	}
 
 	private void resetLastEncoders(double nL, double nR, double nB) {
-		lastPost = new double[]{nL, nR, nB};
+		lastPose = new double[]{nL, nR, nB};
 	}
 
 }

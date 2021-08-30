@@ -18,8 +18,8 @@ public class Robot
    * @param hwMap     the hardware map
    */
   public Robot(HardwareMap hwMap) {
-    // Initialize the motor hardware variables
-		leftFrontDrive = hwMap.get(DcMotor.class, LEFT_FRONT_NAME);
+    // Initialize the motor hardware variable
+	  	leftFrontDrive = hwMap.get(DcMotor.class, LEFT_FRONT_NAME);
 		leftRearDrive = hwMap.get(DcMotor.class, RIGHT_FRONT_NAME);
 		rightFrontDrive = hwMap.get(DcMotor.class, LEFT_REAR_NAME);
 		rightRearDrive = hwMap.get(DcMotor.class, RIGHT_REAR_NAME);
@@ -27,11 +27,11 @@ public class Robot
 		// Initialize the motor array
 
 		//this right here is causing just so many problem
-		drivers = new DcMotor[leftFrontDrive, rightFrontDrive, leftRearDrive, rightRearDrive];
+	  	drivers = new DcMotor[]{leftFrontDrive, rightFrontDrive, leftRearDrive, rightRearDrive};
 
     // set motor orientations (positive power should move wheel clockwise)
 		for (int i = 0; i < 4; i++) {
-			if (MOTOR_INVERTED[i] == true) {
+			if (MOTOR_INVERTED[i]) {
 				drivers[i].setDirection(DcMotor.Direction.REVERSE);
 			}
 		}
