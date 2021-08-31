@@ -25,7 +25,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build -x lint -x lintVitalRelease
+      run: ./gradlew build -x lint -x lintVitalRelease -x test 
+      
+    - name: Test Suite
+      run: ./gradlew test -x lint -x lintVitalRelease
       
     - uses: actions/upload-artifact@v2
       if: failure()
