@@ -31,5 +31,4 @@ jobs:
       if: failure()
       with:
         name: error logs
-        path: home/runner/work/FTC-BASE-CODE/FTC-BASE-CODE/TeamCode/build/reports/tests/testDebugUnitTest/
-    
+        path: /home/runner/work/FTC-BASE-CODE/FTC-BASE-CODE/TeamCode/build/reports
