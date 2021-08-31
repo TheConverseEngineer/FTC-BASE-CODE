@@ -90,7 +90,7 @@ public class PointTest {
 
     @Test
     public void testTest(){
-        assertTrue(true);
+        assertTrue(false);
     }
 
 }
