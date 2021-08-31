@@ -88,4 +88,9 @@ public class PointTest {
         assertEquals(p1.subtractPoint(p2).y, difference.y, 0);
     }
 
+    @Test
+    public void testTest(){
+        assertTrue(true);
+    }
+
 }
