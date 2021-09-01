@@ -1,0 +1,1 @@
+This is the implementation of fake hardware interfaces for testing purposes, inspiration and some code came from team 9929, any file containing code code reused from their codebase will have a comment stating so
