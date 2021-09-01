@@ -56,7 +56,7 @@ public class Point
    */
   public Point subtractFromPoint(Point pointToSubtract) {
     double newX = pointToSubtract.x - x;
-    double newY = pointToSubtract.y - x;
+    double newY = pointToSubtract.y - y;
     return new Point(newX, newY);
   }
 
