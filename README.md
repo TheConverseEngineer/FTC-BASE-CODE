@@ -6,4 +6,6 @@ Features Include:
 - Pure Pursuit Algorithm
 - Mecanum Drive
 - Odometry wheels computation
+- Automated Testing
+- Fake Hardware(comming soon)
 
