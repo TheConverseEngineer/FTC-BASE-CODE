@@ -31,7 +31,7 @@ public class Graph
    * @param B        any other point on line AB
    * @param C        the center of circle C
    * @param radius   the radius of circle C
-   * @return         An array of all intersection points between line AB and circle C
+   * @return         An array of all intersection points between line AB and circle C, if the line does not intersect, returns an empty list
    */
   public static Point[] getCircleLineIntersectionPoints(Point A, Point B, Point C, double radius) {
     Point BA = B.subtractPoint(A);
