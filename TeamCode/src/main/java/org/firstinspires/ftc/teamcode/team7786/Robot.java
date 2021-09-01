@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.team7786;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import java.lang.Math.*;
 import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
 
 // This code serves as a base class for a 4 motor drivetrain
