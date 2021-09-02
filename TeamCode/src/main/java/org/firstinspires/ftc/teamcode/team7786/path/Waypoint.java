@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.team7786.path;
 
 import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
-import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
+import static org.firstinspires.ftc.teamcode.team7786.core.ROBOT_DATA.*;
 
 public class Waypoint
 {

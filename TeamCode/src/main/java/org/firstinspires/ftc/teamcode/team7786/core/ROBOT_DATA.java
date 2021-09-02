@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.team7786;
+package org.firstinspires.ftc.teamcode.team7786.core;
 
 public class ROBOT_DATA
 {

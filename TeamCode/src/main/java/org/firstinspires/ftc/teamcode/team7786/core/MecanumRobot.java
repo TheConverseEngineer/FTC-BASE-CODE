@@ -1,6 +1,6 @@
-package org.firstinspires.ftc.teamcode.team7786;
+package org.firstinspires.ftc.teamcode.team7786.core;
 
-import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
+import static org.firstinspires.ftc.teamcode.team7786.core.ROBOT_DATA.*;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumRobot extends Robot

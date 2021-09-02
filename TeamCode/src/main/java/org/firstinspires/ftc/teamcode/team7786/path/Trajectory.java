@@ -1,11 +1,7 @@
 package org.firstinspires.ftc.teamcode.team7786.path;
 
-import org.firstinspires.ftc.teamcode.team7786.path.Waypoint;
-import org.firstinspires.ftc.teamcode.team7786.path.PathLine;
-import org.firstinspires.ftc.teamcode.team7786.path.PathState;
 import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
 import org.firstinspires.ftc.teamcode.team7786.geometry.Graph;
-import static org.firstinspires.ftc.teamcode.team7786.ROBOT_DATA.*;
 
 public class Trajectory
 {
