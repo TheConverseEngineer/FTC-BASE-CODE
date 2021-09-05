@@ -16,17 +16,26 @@ public class CvCam
   
   private final String license = "PUT THE VUFORIA KEY HERE";
   
+  // Default vuforia parameters
+  private VuforiaLocalizer.Parameters defParams;
+    
+    
   public CvCam (HardwareMap hwMap) {
     initVuforia(hwMap);
   }
   
   private void initVuforia(HardwareMap hwMap) {
+    // use default parameters 
     int cameraMonitorViewId = hwMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
     VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
-
     parameters.vuforiaLicenseKey = license;
     parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-    vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+    
+   
+  }
+  
+  private void initVuforia(HardwareMap hwMap, VuforiaLocalizer.Parameters params) {
+     vuforia = ClassFactory.createVuforiaLocalizer(params);
   }
   
 }
