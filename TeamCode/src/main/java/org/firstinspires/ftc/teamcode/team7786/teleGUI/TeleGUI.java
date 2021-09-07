@@ -42,7 +42,7 @@ public class TeleGUI {
   
   private void updateGUI () {
     for (int i = 0; i < strMap.length; i++) {
-      guiLines[i].setValue(fmtData(i, currentSelected[i] + 2);
+      guiLines[i].setValue(fmtData(i, currentSelected[i] + 2));
     }
     telemetry.update();
   }
