@@ -41,11 +41,27 @@ public class TeleGUI {
   }
   
   private void updateGUI () {
-   for (int i = 0; i < strMap.lenght; i++) {
-     guiLines[i].setValue(fmtData(i, currentSelected[i] + 2);
-   }
-   telemetry.update;
+    for (int i = 0; i < strMap.length; i++) {
+      guiLines[i].setValue(fmtData(i, currentSelected[i] + 2);
+    }
+    telemetry.update;
   }
-  
-  
+                           
+  private void moveDown() {
+    selected = (selected + 1 == strMap.length) ? 0 : selected + 1;
+    updateGUI();
+  }
+                           
+                           
+  private void moveUp() {
+    selected = (selected == 0) ? strMap.length - 1 : selected - 1;
+    updateGUI();
+  }
+                           
+  private void moveRight() {
+    if (strMap[selected][1].isEquals("INT")) {
+      currentSelected++;
+      currentSelected = (currentSelected > Integer.parseInt(strMap[selected][3])) ? Integer.parseInt(strMap[selected][2]) : currentSelected; 
+    }
+  }
 }
