@@ -4,8 +4,8 @@ public class PIDFBase {
    
   public double kP, kI, kD, kF;                 // Store the tuning values
   private double curentValue, targetValue;      // Store current and target values
-  private double totalError, lastError          // Store total accumulated error (for integration) and last error (for differentiation)
-  public double error, errorVelocity;          // Store error and error velocity (how fast the error changes)
+  private double totalError, lastError;         // Store total accumulated error (for integration) and last error (for differentiation)
+  public double error, errorVelocity;           // Store error and error velocity (how fast the error changes)
   private double minIntegral, maxIntegral;                         // Store range limits for the integral to prevent overflow
   public double tolerance = 0.05;                                  // Defines how close is considered "close enough"
   private double toleranceVelocity = Double.POSITIVE_INFINITY;     // Defines maximum derivative gain tolerance. It is reccomended to keep this value at positive infinity.
