@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.team7786.controllers;
 public class PIDFBase {
    
   public double kP, kI, kD, kF;                 // Store the tuning values
-  private double curentValue, targetValue;      // Store current and target values
+  private double currentValue, targetValue;      // Store current and target values
   private double totalError, lastError;         // Store total accumulated error (for integration) and last error (for differentiation)
   public double error, errorVelocity;           // Store error and error velocity (how fast the error changes)
   private double minIntegral, maxIntegral;                         // Store range limits for the integral to prevent overflow
@@ -123,7 +123,7 @@ public class PIDFBase {
   /** get the accepted tolerance
    *  @return      A 2-item double array with {tolerance, toleranceVelocity}
    */
-  public void setTolerance(double tolerance, double toleranceVelocity) {
+  public void getTolerance() {
     return new double[]{tolerance, toleranceVelocity};
   }
   
