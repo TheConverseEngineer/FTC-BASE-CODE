@@ -7,5 +7,6 @@ Features Include:
 - Mecanum Drive
 - Odometry wheels computation
 - Automated Testing
+- PID-Feedforward style controllers (coming soon)
 - Fake Hardware(comming soon)
 
