@@ -47,7 +47,7 @@ public class PIDFBase {
       error = targetValue - currentValue;
     } else {
       error = targetValue - cV;
-      measuredValue = cV;
+      currentValue = cV;
     }
     
     // Calculate velocity error
@@ -107,7 +107,7 @@ public class PIDFBase {
   public void reset() {
     totalError = 0;
     lastError = 0;
-    lastTime = null;
+    lastTime = 0;
   }
   
   
@@ -123,7 +123,7 @@ public class PIDFBase {
   /** get the accepted tolerance
    *  @return      A 2-item double array with {tolerance, toleranceVelocity}
    */
-  public void getTolerance() {
+  public double[] getTolerance() {
     return new double[]{tolerance, toleranceVelocity};
   }
   
