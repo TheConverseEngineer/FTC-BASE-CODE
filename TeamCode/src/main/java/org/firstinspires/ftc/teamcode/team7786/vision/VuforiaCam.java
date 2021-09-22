@@ -19,49 +19,32 @@ public class VuforiaCam
   // The vuforia instance
   public VuforiaLocalizer vuforia;
   
-  // Some year-specific constants
-  private final int NUM_TRACKABLES = 3;
-  private final String VUMARK_NAME = "PUT THE VUMARK ASSET NAME (RELEASED AT KICK-OFF) HERE";
-  private final String[] TRACKABLE_NAMES = new String[]{"Generic item 1", "Generic item 2", "Generic item 3"};
-  
-  // The trackables and target instance
-  private VuforiaTrackables vuforiaAssetRegister;
-  private List<VuforiaTrackable> trackables = new ArrayList<VuforiaTrackable>();
-  
   // The Vuforia license key
   private final String LICENSE_NAME = "PUT THE VUFORIA KEY HERE";
   
-  
-  
-    
+  // The webcam
+  private WebcamName webcam;
   /**
-   * Constructer for class CvCam. Sets camera to back.
-   * @param hwMap     the hardware map
-   */
-  public CvCam (HardwareMap hwMap) {
-    CvCam(hwMap, VuforiaLocalizer.CameraDirection.BACK);
-  }
-  
-  /**
-   * Constructer for class CvCam
+   * Constructer for class VuforiaCam
    * @param hwMap            the hardware map
-   * @param dir              which camera to use
+   * @param _webcamName              which camera to use
    */
-  public CvCam (HardwareMap hwMap, VuforiaLocalizer.CameraDirection dir)) {
-    initVuforia(hwMap, dir, numTrackables);
+  public VuforiaCam (HardwareMap hwMap, String _webcamName) {
+    initVuforia(hwMap, _webcamName);
   }
     
   
   /** Initialize the vuforia camera
    * @param hwMap            the hardware map
-   * @param dir              which camera to use
+   * @param _webcamName              which camera to use
    */
-  private void initVuforia(HardwareMap hwMap, VuforiaLocalizer.CameraDirection dir) {
+  private void initVuforia(HardwareMap hwMap, String _webcamName) {
     // Create parameters
     int cameraMonitorViewId = hwMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+    webcam = hardwareMap.get(WebcamName.class, _webcamName);
     VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
     parameters.vuforiaLicenseKey = LICENSE_NAME;
-    parameters.cameraDirection = dir;
+    parameters.cameraName = webcam;
     
     // Create vuforia
     vuforia = ClassFactory.createVuforiaLocalizer(params);
@@ -69,17 +52,29 @@ public class VuforiaCam
     // Set defaults
     Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
     vuforia.setFrameQueueCapacity(4);
-    
-    // Set reference files
-    vuforiaAssetRegister = vuforia.loadTrackablesFromAsset(VUMARK_NAME);
-    for (int i = 0; i < numTrackables; i++) {
-      VuforiaTrackable currentItem = vuforiaAssetRegister.get(i);
-      currentItem.setName(TRACKABLE_NAMES[i]);
-      trackables.add(currentItem);
+  } 
+  
+  private Mat getCvMat() {
+    VuforiaLocalizer.CloseableFrame frame = vuforia.getFrameQueue().take(); //takes the frame at the head of the queue
+    long numImages = frame.getNumImages();
+
+    for (int i = 0; i < numImages; i++) {
+      if (frame.getImage(i).getFormat() == PIXEL_FORMAT.RGB565) {
+        rgb = frame.getImage(i);
+        break;
+      }
     }
-    
+
+    /*rgb is now the Image object that weve used in the video*/
+    Bitmap bm = Bitmap.createBitmap(rgb.getWidth(), rgb.getHeight(), Bitmap.Config.RGB_565);
+    bm.copyPixelsFromBuffer(rgb.getPixels());
+
+    //put the image into a MAT for OpenCV
+    Mat tmp = new Mat(rgb.getWidth(), rgb.getHeight(), CvType.CV_8UC4);
+    Utils.bitmapToMat(bm, tmp);
+
+    //close the frame, prevents memory leaks and crashing
+    frame.close();
+    return tmp;
   }
-  
-  
-  
 }
