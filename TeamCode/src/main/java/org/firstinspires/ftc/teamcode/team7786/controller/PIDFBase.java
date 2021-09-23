@@ -33,6 +33,11 @@ public class PIDFBase {
     this.reset();
   }
   
+   
+  /** Calculates the output value for the controller
+   * @param cV   the current value of the controller
+   * @return     the output value for the controller
+   */
   public double calculate (double cV) {
     // Calculate time since last execution
     double currentTime = (double) System.nanoTime() / 1E9;
