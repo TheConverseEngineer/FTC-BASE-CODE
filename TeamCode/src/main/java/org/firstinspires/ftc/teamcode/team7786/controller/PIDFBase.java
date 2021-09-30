@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.team7786.controllers;
+package org.firstinspires.ftc.teamcode.team7786.controller;
 
 public class PIDFBase {
    

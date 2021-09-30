@@ -5,6 +5,10 @@ public class ROBOT_DATA
 
 
   /****************************** CONSTANTS ******************************/
+  //Software Version
+  public static final String VERSION = "0.0.1";
+
+
   // Hardware map names
   public static final String LEFT_FRONT_NAME = "leftFrontDrive";
   public static final String RIGHT_FRONT_NAME= "rightFrontDrive";
