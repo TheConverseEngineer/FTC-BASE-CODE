@@ -1,14 +1,15 @@
 package org.firstinspires.ftc.teamcode.team7786.utils;
 
-public class NumberTheory{
+
+public class MathFunctions {
     /** Small utility function that clips a double between two values
      * @param x         the value to check
-     * @param min       the minumum value x can be
+     * @param min       the minimum value x can be
      * @param max       the maximum value x can be
      * @return          the clipped x
      */
     public static double clipRange(double x, double min, double max) {
-        return (x < min ? min : x) > max ? max : x;
+        return Math.min(Math.max(x, min), max);
     }
 
 

@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.team7786.core;
 
+import org.firstinspires.ftc.teamcode.team7786.geometry.Pose;
+import org.firstinspires.ftc.teamcode.team7786.utils.MathFunctions;
+import org.firstinspires.ftc.teamcode.team7786.utils.MathFunctions;
+
 public class ROBOT_DATA
 {
-
-
   /****************************** CONSTANTS ******************************/
   //Software Version
   public static final String VERSION = "0.0.1";
@@ -18,12 +20,19 @@ public class ROBOT_DATA
   // Drivetrain inversions
   public static final boolean[] MOTOR_INVERTED = {false, true, false, true};
 
-  // Encoder positioning and info
-  public static final double COUNTS_PER_ROTATIONS = 2048d;
-  public static final double DEAD_WHEEL_CIRCUMFRENCE_INCHES = 2.5d;
-  public static final double TRACK_WIDTH_INCHES = 10d;                                                    // Distance between the 2 vertical encoders
-  public static final double COUNTS_PER_INCH = COUNTS_PER_ROTATIONS * DEAD_WHEEL_CIRCUMFRENCE_INCHES;      // DO NOT EDIT
-  public static final double TRACK_WIDTH = COUNTS_PER_INCH * TRACK_WIDTH_INCHES;                          // DO NOT EDIT
+  // The number of encoder counts in one inch of travel of an odometry pod.
+  public static final int COUNTS_PER_INCH = 2048;
+
+  // The number of inches between the left and right Odometry pod.
+  public static final double TRACK_WIDTH = 6d;
+
+  // The distance in inches between the back odometry wheel and the robot center.
+  public static final double BACK_OFFSET = 6d;
+
+  // The tuning function for autonomous robot rotation
+  public static double GET_ROTATIONAL_SPEED(double heading, double target) {
+    return MathFunctions.clipRange(target - heading, -1d, 1d);
+  }
 
 
   // Drive to point ad trajectory tuning values
@@ -38,15 +47,7 @@ public class ROBOT_DATA
   /****************************** STATES - DO NOT EDIT ******************************/
 
   // Robot positioning
-  public static double m_X = 0d;
-  public static double m_Y = 0d;
-  public static double m_THETA = 0d;  // This value will only be between 0 and 2pi.
-
-  // Encoder offsets
-  public static int m_LEFT_ENCODER_OFFSET = 0;
-  public static int m_RIGHT_ENCODER_OFFSET = 0;
-  public static int m_BACK_ENCODER_OFFSET = 0;
-
+  public static Pose robotPose = new Pose(0d, 0d, 0d);
 
 
 }
