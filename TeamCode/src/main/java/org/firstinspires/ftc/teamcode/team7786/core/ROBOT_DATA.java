@@ -35,12 +35,18 @@ public class ROBOT_DATA
   }
 
 
-  // Drive to point ad trajectory tuning values
-  public static final double DRIVE_TO_POINT_TURN_TUNE = 1d;
-  public static final double DEFAULT_LINE_FOLLOW_RANGE_INCHES = 5d;
-  public static final double ABSOLUTE_TRAJECTORY_REACH_RANGE_INCHES = 0.5d;
-  public static final double DEFAULT_LINE_FOLLOW_RANGE = DEFAULT_LINE_FOLLOW_RANGE_INCHES * COUNTS_PER_INCH;               // DO NOT EDIT
-  public static final double ABSOLUTE_TRAJECTORY_REACH_RANGE = ABSOLUTE_TRAJECTORY_REACH_RANGE_INCHES * COUNTS_PER_INCH;   // DO NOT EDIT
+  // The maximum allowable range between the robot center and the line it is trying to follow in inches
+  public static final double MAXIMUM_FOLLOW_RANGE = 5d;
+
+  // The inaccuracy offset to prevent indeterminate forms in inches
+  public static final double INDETERMINANT_OFFSET = 0.001d;
+
+  // The default pure pursuit line follow radius in inches
+  public static final double DEFAULT_FOLLOW_RADIUS = 5d;
+
+  // The margin of error allowable by robot rotations in radians
+  public static final double ROTATIONAL_ERROR_MARGIN = Math.toRadians(3);
+
 
 
 

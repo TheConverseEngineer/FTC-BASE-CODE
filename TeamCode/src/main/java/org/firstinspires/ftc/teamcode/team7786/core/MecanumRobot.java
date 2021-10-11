@@ -7,6 +7,7 @@ import static org.firstinspires.ftc.teamcode.team7786.utils.MathFunctions.square
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.team7786.controller.PIDFBase;
+import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
 import org.firstinspires.ftc.teamcode.team7786.kinematics.MecanumDriveQueue;
 
 
@@ -79,13 +80,12 @@ public class MecanumRobot extends Robot
   }
 
   /** Drives the robot towards a specified point on the field
-   * @param x       the x value of the point
-   * @param y       the y value of the point
+   * @param target  the point to pursue
    * @param speed   the speed at which the robot should move
    */
-  public void pursuePoint(double x, double y, double speed) {
-    double deltaX = x - robotPose.x;
-    double deltaY = y - robotPose.y;
+  public void pursuePoint(Point target, double speed) {
+    double deltaX = target.x - robotPose.x;
+    double deltaY = target.y - robotPose.y;
 
     double heading = Math.atan2(deltaX, deltaY);
     driveWithHeading(heading, speed, GET_ROTATIONAL_SPEED(robotPose.theta, heading));
