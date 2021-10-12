@@ -34,6 +34,11 @@ public class ROBOT_DATA
     return MathFunctions.clipRange(target - heading, -1d, 1d);
   }
 
+  // The tuning function for beginning autonomous robot rotation
+  public static double GET_ROTATIONAL_START_POINT (double deltaHeading) {
+    return deltaHeading;
+  }
+
 
   // The maximum allowable range between the robot center and the line it is trying to follow in inches
   public static final double MAXIMUM_FOLLOW_RANGE = 5d;

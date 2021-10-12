@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.team7786.purepursuit;
 
 import org.firstinspires.ftc.teamcode.team7786.geometry.Line;
 import org.firstinspires.ftc.teamcode.team7786.geometry.Point;
+import org.firstinspires.ftc.teamcode.team7786.purepursuit.waypoints.PointTurnWaypoint;
 import org.firstinspires.ftc.teamcode.team7786.purepursuit.waypoints.WaypointBase;
 import org.firstinspires.ftc.teamcode.team7786.purepursuit.waypoints.WaypointTypes;
 import org.firstinspires.ftc.teamcode.team7786.utils.GraphFunctions;
@@ -22,6 +23,12 @@ public class PursuitLine extends Line {
         fixIndeterminant(INDETERMINANT_OFFSET);
     }
 
+    public PursuitLine (PointTurnWaypoint A) {
+        super(A.getPoint(), A.getPoint());
+        this.A = A;
+        this.B = A;
+    }
+
     public WaypointTypes getType () { return type; }
 
     public Point closestPoint(Point P) {
@@ -32,14 +39,14 @@ public class PursuitLine extends Line {
         return GraphFunctions.getCircleLineIntersectionPoints(A.getPoint(), B.getPoint(), O, radius);
     }
 
-    public Point[] getOrderedCircleIntersections (Point O, double radius) throws Exception {
+    public Point[] getOrderedCircleIntersections (Point O, double radius) {
         Point[] rawPoints = getCircleIntersections(O, radius);
         switch (rawPoints.length) {
             case 0: return rawPoints;
             case 1: return rawPoints;
             case 2: return orderDoubleSetByDistance(rawPoints);
         }
-        throw new Exception("More than two circle-line intersection points. How is this possible?");
+        throw new RuntimeException("More than two circle-line intersection points. How is this possible?");
     }
 
     private Point[] orderDoubleSetByDistance(Point[] raw) {
