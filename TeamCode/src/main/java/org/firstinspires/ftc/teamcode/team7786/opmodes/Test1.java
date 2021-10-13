@@ -5,14 +5,17 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.team7786.opmodes.gamepadconfigs.SampleConfig;
 
 
 @TeleOp(name="test1", group="default")
 public class Test1 extends OpMode
 {
-
+    SampleConfig gamepad = new SampleConfig(gamepad1);
     private DcMotorEx dave;
     private double velocity = 0;
 
@@ -57,12 +60,12 @@ public class Test1 extends OpMode
     @Override
     public void loop() {
         double davePower;
-        double drive = gamepad1.left_stick_y;
+        double drive = gamepad.left_stick_y();
 
-        if (gamepad1.dpad_up) {
+        if (gamepad.dpad_up()) {
             velocity += 5;
         }
-        else if (gamepad1.dpad_down){
+        else if (gamepad.dpad_down()){
             if (velocity >= 5){
                 velocity -= 5;
             }
