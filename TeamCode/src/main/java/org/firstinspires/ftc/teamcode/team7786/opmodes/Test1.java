@@ -14,6 +14,7 @@ public class Test1 extends OpMode
 {
 
     private DcMotorEx dave;
+    private double velocity = 0;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -29,9 +30,8 @@ public class Test1 extends OpMode
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
-        dave.setDirection(DcMotorEx.Direction.FORWARD);
-        dave.setTargetPosition(0);
-        dave.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        dave.setDirection(DcMotorEx.Direction.FORWARD);dave.setTargetPosition(0);
+        dave.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
         dave.setMotorEnable();
@@ -59,26 +59,17 @@ public class Test1 extends OpMode
         double davePower;
         double drive = gamepad1.left_stick_y;
 
-        if (gamepad1.a) {
-            dave.setTargetPosition(5);
-            davePower = 0.3;
-            dave.setPower(davePower);
+        if (gamepad1.dpad_up) {
+            velocity += 5;
         }
-        else if (gamepad1.b) {
-            dave.setTargetPosition(40);
-            davePower = 0.3;
-            dave.setPower(davePower);
+        else if (gamepad1.dpad_down){
+            if (velocity >= 5){
+                velocity -= 5;
+            }
         }
-        else if (gamepad1.x) {
-            dave.setTargetPosition(100);
-            davePower = 0.3;
-            dave.setPower(davePower);
-        }
-        else if (gamepad1.y) {
-            dave.setTargetPosition(150);
-            davePower = 0.3;
-            dave.setPower(davePower);
-        }
+        dave.setPower(1);
+        dave.setVelocity(velocity);
+        telemetry.addData("Velocity: ", dave.getVelocity());
     }
 
     /*
@@ -86,6 +77,7 @@ public class Test1 extends OpMode
      */
     @Override
     public void stop() {
+        
     }
 
 }
