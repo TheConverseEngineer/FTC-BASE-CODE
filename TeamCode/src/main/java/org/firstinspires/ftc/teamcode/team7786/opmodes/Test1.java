@@ -64,11 +64,11 @@ public class Test1 extends OpMode
         double drive = gamepad.left_stick_y();
 
         if (gamepad.dpad_up()) {
-            velocity += 5;
+            velocity += 1;
         }
         else if (gamepad.dpad_down()){
-            if (velocity >= 5){
-                velocity -= 5;
+            if (velocity >= 1){
+                velocity -= 1;
             }
         }
         dave.setPower(1);
