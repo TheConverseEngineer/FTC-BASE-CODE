@@ -1,29 +1,29 @@
 package org.firstinspires.ftc.teamcode.team7786.opmodes;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.team7786.opmodes.gamepadconfigs.SampleConfig;
 
 
-@TeleOp(name="test1", group="default")
+@TeleOp
 public class Test1 extends OpMode
 {
-    SampleConfig gamepad = new SampleConfig(gamepad1);
-    private DcMotorEx dave;
-    private double velocity = 0;
+    DcMotorEx dave;
+    double velocity;
 
+    SampleConfig gamepad;
     /*
      * Code to run ONCE when the driver hits INIT
      */
     @Override
     public void init() {
+
+        velocity = 0;
         telemetry.addData("Status", "Initialized");
 
         // Initialize the hardware variables. Note that the strings used here as parameters
@@ -38,6 +38,7 @@ public class Test1 extends OpMode
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
         dave.setMotorEnable();
+        gamepad = new SampleConfig(gamepad1);
     }
 
     /*
@@ -71,7 +72,7 @@ public class Test1 extends OpMode
             }
         }
         dave.setPower(1);
-        dave.setVelocity(velocity);
+        dave.setVelocity(velocity, AngleUnit.DEGREES);
         telemetry.addData("Velocity: ", dave.getVelocity());
     }
 

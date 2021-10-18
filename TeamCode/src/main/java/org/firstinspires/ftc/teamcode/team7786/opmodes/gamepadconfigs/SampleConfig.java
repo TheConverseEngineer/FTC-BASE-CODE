@@ -2,22 +2,41 @@ package org.firstinspires.ftc.teamcode.team7786.opmodes.gamepadconfigs;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.GamepadPlus;
+import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.GamepadEx;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.StandardButton;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.ToggleButton;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInput;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInputButton;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInputToggleButton;
-public class SampleConfig {
-    public GamepadPlus gamepad;
 
+public class SampleConfig {
+    public GamepadEx gamepadplus;
+    StandardButton a, x , dpadUp, dpadDown;
+    ToggleButton b;
+    VariableInput leftStickX, leftStickY, rightStickX, rightStickY;
+    VariableInputButton rightTrigger;
 
     /**
      *
-     * @param gamepad the gamepad, ususally gamepad1
+     * @param gamepad the gamepad, usually gamepad1 or gamepad2
      */
     public SampleConfig(Gamepad gamepad){
-        this.gamepad = new GamepadPlus(gamepad);
+        this.gamepadplus = new GamepadEx(gamepad);
+
+        a = gamepadplus.getAButton();
+        x = gamepadplus.getXButton();
+        dpadUp = gamepadplus.getDpad_upButton();
+        dpadDown = gamepadplus.getDpad_DownButton();
+
+        b = gamepadplus.getBButtonToggled();
+
+        leftStickX = gamepadplus.getLeftStickX();
+        leftStickY = gamepadplus.getLeftStickY();
+
+        rightStickX = gamepadplus.getRightStickX();
+        rightStickY = gamepadplus.getRightStickY();
+
+        rightTrigger = gamepadplus.getRightTriggerButton(0.5);
     }
 
     /*
@@ -25,20 +44,8 @@ public class SampleConfig {
     the gamepad plus class like this I recommend grouping them by button type for readability
      */
 
-    StandardButton a = gamepad.getAButton();
-    StandardButton x = gamepad.getXButton();
-    StandardButton dpadUp = gamepad.getDpad_upButton();
-    StandardButton dpadDown = gamepad.getDpad_DownButton();
 
-    ToggleButton b = gamepad.getBButtonToggled();
 
-    VariableInput leftStickX = gamepad.getLeftStickX();
-    VariableInput leftStickY = gamepad.getLeftStickY();
-
-    VariableInput rightStickX = gamepad.getRightStickX();
-    VariableInput rightStickY = gamepad.getRightStickY();
-
-    VariableInputButton rightTrigger = gamepad.getRightTriggerButton(0.5);
 
 
     /*

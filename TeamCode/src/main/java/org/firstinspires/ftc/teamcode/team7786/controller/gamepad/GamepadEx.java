@@ -22,9 +22,9 @@ proceed if you must, but don't say i didn't warn you
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-public class GamepadPlus {
+public class GamepadEx {
     private Gamepad gamepad;
-    public GamepadPlus(Gamepad gamepad){
+    public GamepadEx(Gamepad gamepad){
         this.gamepad = gamepad;
     }
     // Buttons
