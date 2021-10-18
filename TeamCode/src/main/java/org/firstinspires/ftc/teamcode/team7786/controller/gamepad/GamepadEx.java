@@ -16,8 +16,8 @@ from experience debugging this is like staring into the void
 no matter how much you know that its impossible, you cant shake the feeling that the void
 is staring back
 
-proceed if you must, but I accept no responsibility for physical, mental, or emotional
-damage incured while attempting to read this
+proceed if you must, but I accept no responsibility for physical, mental, or political
+damage incurred while attempting to read this
 don't say i didn't warn you
  */
 
