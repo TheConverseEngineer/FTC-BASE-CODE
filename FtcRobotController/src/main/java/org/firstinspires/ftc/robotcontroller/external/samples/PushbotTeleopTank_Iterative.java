@@ -50,7 +50,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Pushbot: Teleop Tank", group="Pushbot")
-@Disabled
+
 public class PushbotTeleopTank_Iterative extends OpMode{
 
     /* Declare OpMode members. */
@@ -100,17 +100,7 @@ public class PushbotTeleopTank_Iterative extends OpMode{
 
         robot.leftDrive.setPower(left);
         robot.rightDrive.setPower(right);
-
-        // Use gamepad left & right Bumpers to open and close the claw
-        if (gamepad1.right_bumper)
-            clawOffset += CLAW_SPEED;
-        else if (gamepad1.left_bumper)
-            clawOffset -= CLAW_SPEED;
-
-        // Move both servos to new position.  Assume servos are mirror image of each other.
-        clawOffset = Range.clip(clawOffset, -0.5, 0.5);
-        robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
-        robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
+        robot.otherRightDrive.setPower(right);
 
         // Use gamepad buttons to move the arm up (Y) and down (A)
         if (gamepad1.y)

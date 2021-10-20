@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.team7786.opmodes.gamepadconfigs;
+package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -8,7 +8,17 @@ import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.ToggleButton;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInput;
 import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInputButton;
 
-public class SampleConfig {
+
+/*
+atm this is just a config class, im trying to find a way to make this extensible so yea lets hope that
+works
+
+Notes:
+Enum types for the different types of buttons have been created in the GamepadEx class
+
+
+ */
+public class ConfigCore {
     GamepadEx gamepadEx;
     StandardButton a, x , dpadUp, dpadDown;
     ToggleButton b;
@@ -19,7 +29,7 @@ public class SampleConfig {
      *
      * @param gamepad the gamepad, usually gamepad1 or gamepad2
      */
-    public SampleConfig(Gamepad gamepad){
+    public ConfigCore(Gamepad gamepad){
         this.gamepadEx = new GamepadEx(gamepad);
 
         a = gamepadEx.getAButton();

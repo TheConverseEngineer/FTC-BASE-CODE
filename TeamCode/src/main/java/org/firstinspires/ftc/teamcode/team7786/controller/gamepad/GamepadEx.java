@@ -13,12 +13,15 @@ but this is not that, it is not graceful, it is not elegant, it just is, so my r
 that you turn around now and treat this like a black box
 
 from experience debugging this is like staring into the void
-no matter how much you know that its impossible, you cant shake the feeling that the void
+no matter how much you know that it's impossible, you cant shake the feeling that the void
 is staring back
 
 proceed if you must, but I accept no responsibility for physical, mental, or political
 damage incurred while attempting to read this
 don't say i didn't warn you
+ */
+/*
+TODO: add a config class that can be extended with overridable methods for easier creation and compatibility
  */
 
 
@@ -662,4 +665,14 @@ public class GamepadEx {
         return new VariableInputToggleButton(new VariableInputButton(getRightTrigger(), threshold));
     }
 
+
+    enum StandardButtonTypes{
+        STANDARD,
+        TOGGLE
+    }
+    enum VariableInputTypes{
+        STANDARD,
+        VARIABLE_INPUT_BUTTON,
+        VARIABLE_INPUT_TOGGLE
+    }
 }

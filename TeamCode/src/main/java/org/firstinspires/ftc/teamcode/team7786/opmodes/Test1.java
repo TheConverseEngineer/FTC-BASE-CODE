@@ -62,7 +62,9 @@ public class Test1 extends OpMode
     public void loop() {
         double davePower;
         double drive = gamepad.left_stick_y();
-
+        if (gamepad.a()){
+            telemetry.addData("A button", gamepad.a());
+        }
         if (gamepad.dpad_up()) {
             velocity += 1;
         }
@@ -71,9 +73,10 @@ public class Test1 extends OpMode
                 velocity -= 1;
             }
         }
+
         dave.setPower(1);
         dave.setVelocity(velocity, AngleUnit.DEGREES);
-        telemetry.addData("Velocity: ", dave.getVelocity());
+        telemetry.addData("Velocity: ", velocity);
     }
 
     /*
