@@ -7,7 +7,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 public class VisionConstants {
 
     // Vuforia setup constants
-    public static final String VUFORIA_KEY = "PUT VUFORIA KEY HERE";
+    public static final String VUFORIA_KEY = "AUsksgf/////AAABmWS7Sd6xPE1CgkVwdNx9tVtX7xQ2UfepGBbAPdDZARje2qIleA0Qd1+Zf0APPU0YHKb0/M4Ibfk8zrJVwkEYClMJOSoewtuTCzsVqIvFsJbMJk3fh+uaZ+CpZuVx7ALWIC5/R26vIr9YRfuPfaOUh+QEwxD7EMM2JK3j10Z0fYhaImw2tSAwU7UQIu+RSlwI+5rQ4nZN4eI5GZO73CxZYsUI5jBpLntHDWKMsMw42f80WIC8fJbh3nQfntz547AzfySb21QiS4rJCBeV0oUGCPRaRFMmb3NtNTB551Dm4bBhVTA8PJH2F3itzM7pO7Lawh5fcWRgdosrphZZKV+iXyMKwaznfwbCLAoOepf6Q+px";
     public static final VuforiaLocalizer.CameraDirection CAMERA_DIRECTION = VuforiaLocalizer.CameraDirection.BACK;
     public static final boolean EXTENDED_TRACKING_ENABLED = false;
 
