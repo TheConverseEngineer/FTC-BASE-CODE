@@ -6,11 +6,23 @@ abstract class MecanumDrive {
     
   }
   
-  public class MecanumLocalizer {
+  public class MecanumLocalizer implements Localizer {
     
     public MecanumLocalizer(MecanumDrive drive, boolean useExternalHeading) {
       
     } 
+    
+    public Pose2d estimatePosition() {
+      
+    }
+    
+    public Pose2d estimateVelocity() {
+      
+    }
+    
+    public void update() {
+      
+    }
   }
   
 }
