@@ -42,8 +42,7 @@ public class CvCam {
 
     private OpenGLMatrix lastLocation;
 
-    public CvCam (OpenCvPipeline pipeline, HardwareMap hwMap, Telemetry telemetry) {
-        currentPipeline = pipeline;
+    public CvCam (HardwareMap hwMap, Telemetry telemetry) {
         initOpenCV(hwMap);
         this.telemetry = telemetry;
     }
@@ -61,7 +60,6 @@ public class CvCam {
             public void onOpened() {
                 passthroughCam.setViewportRenderer(VIEWPORT_RENDERER);
                 passthroughCam.setViewportRenderingPolicy(VIEWPORT_RENDERER_POLICY);
-                passthroughCam.setPipeline(currentPipeline);
 
                 passthroughCam.startStreaming(0, 0, PHONE_ROTATION);
             }
