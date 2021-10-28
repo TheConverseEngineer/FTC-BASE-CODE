@@ -10,6 +10,6 @@ Features Include:
 - Automated Testing
 - PID-Feedforward style controllers
 - Native OpenCV vision code (coming soon)
-- Advanced Gamepad library (coming soon)
+- Advanced Gamepad library
 - Fake Hardware(comming soon)
 
