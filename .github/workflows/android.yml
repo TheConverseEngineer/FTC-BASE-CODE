@@ -25,10 +25,20 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build -x lint -x lintVitalRelease
+      run: ./gradlew assemble -x lint -x lintVitalRelease
       
     - uses: actions/upload-artifact@v2
       if: failure()
       with:
         name: error logs
         path: /home/runner/work/FTC-BASE-CODE/FTC-BASE-CODE/TeamCode/build/reports
+    
+    - name: Run Tests
+      run: gradle test
+      
+    - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: error logs
+        path: /home/runner/work/FTC-BASE-CODE/FTC-BASE-CODE/TeamCode/build/reports
+      
