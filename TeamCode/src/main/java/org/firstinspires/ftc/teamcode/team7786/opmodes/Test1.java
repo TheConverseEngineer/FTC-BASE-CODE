@@ -1,25 +1,29 @@
 package org.firstinspires.ftc.teamcode.team7786.opmodes;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.team7786.opmodes.gamepadconfigs.SampleConfig;
 
 
-@TeleOp(name="test1", group="default")
+@TeleOp
 public class Test1 extends OpMode
 {
+    DcMotorEx dave;
+    double velocity;
 
-    private DcMotorEx dave;
-
+    SampleConfig gamepad;
     /*
      * Code to run ONCE when the driver hits INIT
      */
     @Override
     public void init() {
+
+        velocity = 0;
         telemetry.addData("Status", "Initialized");
 
         // Initialize the hardware variables. Note that the strings used here as parameters
@@ -29,12 +33,12 @@ public class Test1 extends OpMode
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
-        dave.setDirection(DcMotorEx.Direction.FORWARD);
-        dave.setTargetPosition(0);
-        dave.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        dave.setDirection(DcMotorEx.Direction.FORWARD);dave.setTargetPosition(0);
+        dave.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
         dave.setMotorEnable();
+        gamepad = new SampleConfig(gamepad1);
     }
 
     /*
@@ -57,28 +61,22 @@ public class Test1 extends OpMode
     @Override
     public void loop() {
         double davePower;
-        double drive = gamepad1.left_stick_y;
+        double drive = gamepad.left_stick_y();
+        if (gamepad.a()){
+            telemetry.addData("A button", gamepad.a());
+        }
+        if (gamepad.dpad_up()) {
+            velocity += 1;
+        }
+        else if (gamepad.dpad_down()){
+            if (velocity >= 1){
+                velocity -= 1;
+            }
+        }
 
-        if (gamepad1.a) {
-            dave.setTargetPosition(5);
-            davePower = 0.3;
-            dave.setPower(davePower);
-        }
-        else if (gamepad1.b) {
-            dave.setTargetPosition(40);
-            davePower = 0.3;
-            dave.setPower(davePower);
-        }
-        else if (gamepad1.x) {
-            dave.setTargetPosition(100);
-            davePower = 0.3;
-            dave.setPower(davePower);
-        }
-        else if (gamepad1.y) {
-            dave.setTargetPosition(150);
-            davePower = 0.3;
-            dave.setPower(davePower);
-        }
+        dave.setPower(1);
+        dave.setVelocity(velocity, AngleUnit.DEGREES);
+        telemetry.addData("Velocity: ", velocity);
     }
 
     /*
@@ -86,6 +84,7 @@ public class Test1 extends OpMode
      */
     @Override
     public void stop() {
+        
     }
 
 }
