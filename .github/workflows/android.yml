@@ -34,7 +34,7 @@ jobs:
         path: /home/runner/work/FTC-BASE-CODE/FTC-BASE-CODE/TeamCode/build/reports
     
     - name: Run Tests
-      run: gradle test
+      run: gradle test --build-cache
       
     - uses: actions/upload-artifact@v2
       if: failure()
