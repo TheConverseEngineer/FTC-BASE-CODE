@@ -61,14 +61,14 @@ public class Test1 extends OpMode
     @Override
     public void loop() {
         double davePower;
-        double drive = gamepad.left_stick_y();
-        if (gamepad.a()){
-            telemetry.addData("A button", gamepad.a());
+        double drive = gamepad.left_stick_yButton();
+        if (gamepad.aButton()){
+            telemetry.addData("A button", gamepad.aButton());
         }
-        if (gamepad.dpad_up()) {
+        if (gamepad.dpad_upButton()) {
             velocity += 1;
         }
-        else if (gamepad.dpad_down()){
+        else if (gamepad.dpad_down){
             if (velocity >= 1){
                 velocity -= 1;
             }
