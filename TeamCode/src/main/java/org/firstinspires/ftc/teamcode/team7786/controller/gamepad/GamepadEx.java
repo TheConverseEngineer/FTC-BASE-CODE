@@ -8,9 +8,9 @@ package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 
 /*
 Reader Beware
-I consider my code to be aButton work of art, each piece carefully crafted and placed with care
+I consider my code to be a work of art, each piece carefully crafted and placed with care
 but this is not that, it is not graceful, it is not elegant, it just is, so my recommendation is
-that you turn around now and treat this like aButton black box
+that you turn around now and treat this like a black box
 
 from experience debugging this is like staring into the void
 no matter how much you know that it's impossible, you cant shake the feeling that the void

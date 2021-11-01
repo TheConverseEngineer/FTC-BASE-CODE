@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 /*
-atm this is just aButton config class, im trying to find a way to make this extensible so yea lets hope that
+atm this is just a config class, im trying to find a way to make this extensible so yea lets hope that
 works
 
 
