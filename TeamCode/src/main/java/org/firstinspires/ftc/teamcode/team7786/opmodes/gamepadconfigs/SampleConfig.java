@@ -15,6 +15,9 @@ public class SampleConfig {
     VariableInput leftStickXButton, leftStickYButton, rightStickXButton, rightStickYButton;
     VariableInputButton rightTriggerButton;
 
+    //the time, in milliseconds, between controller updates
+    int UPDATE_TIME = 20;
+
     public boolean a, b, x, dpad_up, dpad_down, right_trigger;
     public float left_stick_y, left_stick_x, right_stick_x, right_stick_y;
 
@@ -96,6 +99,10 @@ public class SampleConfig {
     Thread updater = new Thread(){
         public void run(){
             update();
+            try {
+                Thread.sleep(UPDATE_TIME);}
+            catch(InterruptedException e){}
+
         }
     };
     public void start(){
