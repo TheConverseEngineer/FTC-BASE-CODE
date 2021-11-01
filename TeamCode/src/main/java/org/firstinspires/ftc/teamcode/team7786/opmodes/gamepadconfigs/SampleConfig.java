@@ -54,9 +54,9 @@ public class SampleConfig {
 
 
     /*
-    from here you will make aButton method for each button, trying to keep in line with the
+    from here you will make a method for each button, trying to keep in line with the
     method names given in the gamepad class even if this violates your naming conventions
-    this will allow the improved gamepad to be almost aButton drop in replacement for the standard gamepad
+    this will allow the improved gamepad to be almost a drop in replacement for the standard gamepad
      */
 
     //Standard buttons

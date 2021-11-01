@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 /*
-atm this is just aButton config class, im trying to find aButton way to make this extensible so yea lets hope that
+atm this is just aButton config class, im trying to find a way to make this extensible so yea lets hope that
 works
 
-Notes:
-Enum types for the different types of buttons have been created in the GamepadEx class
+
 
 
  */
@@ -53,9 +52,9 @@ public class ConfigCore {
 
 
     /*
-    from here you will make aButton method for each button, trying to keep in line with the
+    from here you will make a method for each button, trying to keep in line with the
     method names given in the gamepad class even if this violates your naming conventions
-    this will allow the improved gamepad to be almost aButton drop in replacement for the standard gamepad
+    this will allow the improved gamepad to be almost a drop in replacement for the standard gamepad
      */
 
     //Standard buttons
