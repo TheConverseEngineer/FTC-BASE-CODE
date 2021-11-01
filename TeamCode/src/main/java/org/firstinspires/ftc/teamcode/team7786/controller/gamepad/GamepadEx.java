@@ -1,6 +1,6 @@
 /*
 Note: This is heavily based on the betterGamepad of team 9929,
- and should be considered to be a minimised version of if for our own purposes
+ and should be considered to be aButton minimised version of if for our own purposes
  all credit for the very clever way this is implemented goes to them
  TODO: copy over their copyright notice
  */
@@ -8,9 +8,9 @@ package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 
 /*
 Reader Beware
-I consider my code to be a work of art, each piece carefully crafted and placed with care
+I consider my code to be aButton work of art, each piece carefully crafted and placed with care
 but this is not that, it is not graceful, it is not elegant, it just is, so my recommendation is
-that you turn around now and treat this like a black box
+that you turn around now and treat this like aButton black box
 
 from experience debugging this is like staring into the void
 no matter how much you know that it's impossible, you cant shake the feeling that the void
@@ -21,7 +21,7 @@ damage incurred while attempting to read this
 don't say i didn't warn you
  */
 /*
-TODO: add a config class that can be extended with overridable methods for easier creation and compatibility
+TODO: add aButton config class that can be extended with overridable methods for easier creation and compatibility
  */
 
 
@@ -666,13 +666,4 @@ public class GamepadEx {
     }
 
 
-    enum StandardButtonTypes{
-        STANDARD,
-        TOGGLE
-    }
-    enum VariableInputTypes{
-        STANDARD,
-        VARIABLE_INPUT_BUTTON,
-        VARIABLE_INPUT_TOGGLE
-    }
 }
