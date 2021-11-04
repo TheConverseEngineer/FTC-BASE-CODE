@@ -2,50 +2,44 @@ package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.GamepadEx;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.StandardButton;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.ToggleButton;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInput;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInputButton;
-
-
 /*
 atm this is just a config class, im trying to find a way to make this extensible so yea lets hope that
 works
 
-Notes:
-Enum types for the different types of buttons have been created in the GamepadEx class
+
 
 
  */
 public class ConfigCore {
     GamepadEx gamepadEx;
-    StandardButton a, x , dpadUp, dpadDown;
-    ToggleButton b;
-    VariableInput leftStickX, leftStickY, rightStickX, rightStickY;
-    VariableInputButton rightTrigger;
+    StandardButton aButton, XButton, dpadUpButton, dpadDownButton;
+    ToggleButton bButton;
+    VariableInput leftStickXButton, leftStickYButton, rightStickXButton, rightStickYButton;
+    VariableInputButton rightTriggerButton;
+
+    public boolean a, b, x, dpad_up, dpad_down, right_trigger_button;
+    public float left_stick_x, left_stick_y, right_stick_x, right_stick_y;
 
     /**
-     *
      * @param gamepad the gamepad, usually gamepad1 or gamepad2
      */
-    public ConfigCore(Gamepad gamepad){
+    public ConfigCore(Gamepad gamepad) {
         this.gamepadEx = new GamepadEx(gamepad);
 
-        a = gamepadEx.getAButton();
-        x = gamepadEx.getXButton();
-        dpadUp = gamepadEx.getDpad_upButton();
-        dpadDown = gamepadEx.getDpad_DownButton();
+        aButton = gamepadEx.getAButton();
+        XButton = gamepadEx.getXButton();
+        dpadUpButton = gamepadEx.getDpad_upButton();
+        dpadDownButton = gamepadEx.getDpad_DownButton();
 
-        b = gamepadEx.getBButtonToggled();
+        bButton = gamepadEx.getBButtonToggled();
 
-        leftStickX = gamepadEx.getLeftStickX();
-        leftStickY = gamepadEx.getLeftStickY();
+        leftStickXButton = gamepadEx.getLeftStickX();
+        leftStickYButton = gamepadEx.getLeftStickY();
 
-        rightStickX = gamepadEx.getRightStickX();
-        rightStickY = gamepadEx.getRightStickY();
+        rightStickXButton = gamepadEx.getRightStickX();
+        rightStickYButton = gamepadEx.getRightStickY();
 
-        rightTrigger = gamepadEx.getRightTriggerButton(0.5);
+        rightTriggerButton = gamepadEx.getRightTriggerButton(0.5);
     }
 
     /*
@@ -64,38 +58,47 @@ public class ConfigCore {
      */
 
     //Standard buttons
-    public boolean a(){
-        return a.pressed();
+    public boolean aButton() {
+        return aButton.pressed();
     }
-    public boolean x(){
-        return x.pressed();
+
+    public boolean xButton() {
+        return XButton.pressed();
     }
-    public boolean dpad_up(){
-        return dpadUp.pressed();
+
+    public boolean dpad_upButton() {
+        return dpadUpButton.pressed();
     }
-    public boolean dpad_down(){
-        return dpadDown.pressed();
+
+    public boolean dpad_downButton() {
+        return dpadDownButton.pressed();
     }
 
     //Toggle Button
-    public boolean b(){
-        return b.getState();
+    public boolean bButton() {
+        return bButton.getState();
     }
 
     //Variable Inputs
-    public float left_stick_x(){
-        return leftStickX.getPosition();
+    public float left_stick_xButton() {
+        return leftStickXButton.getPosition();
     }
-    public float left_stick_y() {
-        return leftStickY.getPosition();
+
+    public float left_stick_yButton() {
+        return leftStickYButton.getPosition();
     }
-    public float right_stick_x(){
-        return rightStickX.getPosition();
+
+    public float right_stick_xButton() {
+        return rightStickXButton.getPosition();
     }
-    public float right_stick_y(){
-        return rightStickY.getPosition();
+
+    public float right_stick_yButton() {
+        return rightStickYButton.getPosition();
     }
-    public boolean right_trigger(){
-        return rightTrigger.pressed();
+
+    public boolean right_triggerButton() {
+        return rightTriggerButton.pressed();
     }
+
+
 }

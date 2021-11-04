@@ -11,9 +11,9 @@ import org.firstinspires.ftc.teamcode.team7786.opmodes.gamepadconfigs.SampleConf
 
 
 @TeleOp
-public class Test1 extends OpMode
+public class GamepadExTest extends OpMode
 {
-    DcMotorEx dave;
+
     double velocity;
 
     SampleConfig gamepad;
@@ -29,15 +29,9 @@ public class Test1 extends OpMode
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        dave  = hardwareMap.get(DcMotorEx.class, "dave");
 
-        // Most robots need the motor on one side to be reversed to drive forward
-        // Reverse the motor that runs backwards when connected directly to the battery
-        dave.setDirection(DcMotorEx.Direction.FORWARD);dave.setTargetPosition(0);
-        dave.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
-        dave.setMotorEnable();
         gamepad = new SampleConfig(gamepad1);
     }
 
@@ -53,6 +47,7 @@ public class Test1 extends OpMode
      */
     @Override
     public void start() {
+        gamepad.start();
     }
 
     /*
@@ -60,23 +55,12 @@ public class Test1 extends OpMode
      */
     @Override
     public void loop() {
-        double davePower;
-        double drive = gamepad.left_stick_yButton();
-        if (gamepad.a){
-            telemetry.addData("A button", gamepad.a);
-        }
-        if (gamepad.dpad_up) {
-            velocity += 1;
-        }
-        else if (gamepad.dpad_down){
-            if (velocity >= 1){
-                velocity -= 1;
-            }
-        }
-
-        dave.setPower(1);
-        dave.setVelocity(velocity, AngleUnit.DEGREES);
+        telemetry.addData("A button", gamepad.a);
+        telemetry.addData("b button", gamepad.b);
+        telemetry.addData("left stick x", gamepad.left_stick_x);
         telemetry.addData("Velocity: ", velocity);
+
+        telemetry.update();
     }
 
     /*
@@ -84,7 +68,7 @@ public class Test1 extends OpMode
      */
     @Override
     public void stop() {
-        
+        gamepad.stop();
     }
 
 }
