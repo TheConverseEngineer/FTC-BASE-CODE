@@ -15,11 +15,11 @@ public class ButtonCore {
     public ButtonCore(StandardButton button){
         this.button = button;
 
-        this.last = button.pressed();
+        this.last = button.state();
     }
 
     public boolean getRise(){
-        boolean currentState = button.pressed();
+        boolean currentState = button.state();
 
         if (currentState && !last){
             last = true;
@@ -30,7 +30,7 @@ public class ButtonCore {
         return false;
     }
     public boolean getFall(){
-        boolean currentState = button.pressed();
+        boolean currentState = button.state();
 
         if (!currentState && last){
             last = true;

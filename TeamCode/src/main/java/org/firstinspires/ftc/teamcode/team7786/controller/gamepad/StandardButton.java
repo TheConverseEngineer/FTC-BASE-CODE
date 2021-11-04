@@ -7,7 +7,7 @@ Note: This is heavily based on the betterGamepad of team 9929,
 package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 
 public interface StandardButton {
-    boolean pressed();
+    boolean state();
 
     ButtonCore buttonCore();
 }

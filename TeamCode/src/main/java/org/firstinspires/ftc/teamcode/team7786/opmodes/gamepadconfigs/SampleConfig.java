@@ -55,16 +55,16 @@ public class SampleConfig {
 
     //Standard buttons
     public boolean a(){
-        return a.pressed();
+        return a.state();
     }
     public boolean x(){
-        return x.pressed();
+        return x.state();
     }
     public boolean dpad_up(){
-        return dpadUp.pressed();
+        return dpadUp.state();
     }
     public boolean dpad_down(){
-        return dpadDown.pressed();
+        return dpadDown.state();
     }
 
     //Toggle Button

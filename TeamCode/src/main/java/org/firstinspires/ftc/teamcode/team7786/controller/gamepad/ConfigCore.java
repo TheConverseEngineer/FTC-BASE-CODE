@@ -2,12 +2,6 @@ package org.firstinspires.ftc.teamcode.team7786.controller.gamepad;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.GamepadEx;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.StandardButton;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.ToggleButton;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInput;
-import org.firstinspires.ftc.teamcode.team7786.controller.gamepad.VariableInputButton;
-
 
 /*
 atm this is just a config class, im trying to find a way to make this extensible so yea lets hope that
@@ -65,16 +59,16 @@ public class ConfigCore {
 
     //Standard buttons
     public boolean a(){
-        return a.pressed();
+        return a.state();
     }
     public boolean x(){
-        return x.pressed();
+        return x.state();
     }
     public boolean dpad_up(){
-        return dpadUp.pressed();
+        return dpadUp.state();
     }
     public boolean dpad_down(){
-        return dpadDown.pressed();
+        return dpadDown.state();
     }
 
     //Toggle Button

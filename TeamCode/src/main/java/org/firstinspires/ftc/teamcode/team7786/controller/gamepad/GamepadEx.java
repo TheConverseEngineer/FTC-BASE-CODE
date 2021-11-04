@@ -38,7 +38,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.a;
             }
 
@@ -60,7 +60,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.a;
             }
 
@@ -79,7 +79,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.b;
             }
 
@@ -101,7 +101,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.b;
             }
 
@@ -120,7 +120,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.back;
             }
 
@@ -142,7 +142,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.back;
             }
 
@@ -161,7 +161,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_down;
             }
 
@@ -183,7 +183,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_down;
             }
 
@@ -202,7 +202,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_up;
             }
 
@@ -224,7 +224,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_up;
             }
 
@@ -243,7 +243,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_left;
             }
 
@@ -265,7 +265,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_left;
             }
 
@@ -284,7 +284,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_right;
             }
 
@@ -306,7 +306,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.dpad_right;
             }
 
@@ -325,7 +325,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.x;
             }
 
@@ -347,7 +347,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.x;
             }
 
@@ -366,7 +366,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.y;
             }
 
@@ -388,7 +388,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.y;
             }
 
@@ -407,7 +407,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.left_bumper;
             }
 
@@ -429,7 +429,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.left_bumper;
             }
 
@@ -448,7 +448,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.right_bumper;
             }
 
@@ -470,7 +470,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.right_bumper;
             }
 
@@ -489,7 +489,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.left_stick_button;
             }
 
@@ -511,7 +511,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.left_stick_button;
             }
 
@@ -530,7 +530,7 @@ public class GamepadEx {
         return new ToggleButton(new StandardButton() {
             private ButtonCore button;
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.right_stick_button;
             }
 
@@ -552,7 +552,7 @@ public class GamepadEx {
             private ButtonCore button;
 
             @Override
-            public boolean pressed() {
+            public boolean state() {
                 return gamepad.right_stick_button;
             }
 
@@ -666,13 +666,13 @@ public class GamepadEx {
     }
 
 
-    enum StandardButtonTypes{
-        STANDARD,
-        TOGGLE
+    public enum StandardButtonTypes{
+        STANDARD_BUTTON,
+        TOGGLE_BUTTON
     }
-    enum VariableInputTypes{
-        STANDARD,
-        VARIABLE_INPUT_BUTTON,
-        VARIABLE_INPUT_TOGGLE
+    public enum VariableInputTypes{
+        VARIABLE_INPUT_STANDARD,
+        VARIABLE_INPUT_STANDARD_BUTTON,
+        VARIABLE_INPUT_TOGGLE_BUTTON
     }
 }
