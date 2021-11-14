@@ -8,12 +8,11 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.teamcode.team7786.geometry.Pose;
 import org.firstinspires.ftc.teamcode.team7786.geometry.Pose2d;
 
 @Config
@@ -30,6 +29,8 @@ public class MecIKTest extends OpMode {
     private FtcDashboard dash;
     private Pose2d pose;
     private BNO055IMU imu;
+
+    private ElapsedTime timer;
 
     @Override
     public void init() {
@@ -53,6 +54,13 @@ public class MecIKTest extends OpMode {
 
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+
+        timer = new ElapsedTime();
+    }
+
+    @Override
+    public void start() {
+        timer.reset();
     }
 
     @Override
@@ -86,7 +94,12 @@ public class MecIKTest extends OpMode {
         leftRearDrive.setPower(motorPowers[2]);
         rightRearDrive.setPower(motorPowers[3]);
 
-        for (double i: motorPowers) { i *= maxSpeed; }
+        for (int i = 0; i < 4; i++) {
+            motorPowers[i] = motorPowers[i] * maxSpeed * 11.873736 * (timer.milliseconds() / 60000);
+        }
+
+        packet.put("looptime", timer.milliseconds());
+        timer.reset();
 
         // Pseudo-Forward Kinematics
         Pose2d dPose = new Pose2d(
