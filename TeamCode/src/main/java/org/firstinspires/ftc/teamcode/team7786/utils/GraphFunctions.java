@@ -76,6 +76,18 @@ public class GraphFunctions
         }
     }
 
+    /** Reduces an angle until it is between -PI and PI
+     * @param angle     the angle to reduce (radians)
+     */
+    public static void reduceAngle(double angle) {
+        while (angle >= Math.PI) {
+            angle -= Math.PI * 2;
+        }
+        while (angle < Math.PI) {
+            angle += Math.PI * 2;
+        }
+    }
+
     public static double subtractAngles(double a, double b) {
         double difference = a - b;
         reduceAngle(difference, Math.PI, -Math.PI);
